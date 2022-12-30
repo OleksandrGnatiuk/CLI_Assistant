@@ -187,16 +187,18 @@ def helps(s=None):
     5) to remove phone, write command: remove phone {name} {old phone}
     
     6) to add e-mail, write command: add email {name} {e-mail}
+    7) to change e-mail, write command: change email {name} {new e-mail}
+    8) to remove e-mail, write command: remove email {name}
 
-    7) to add birthday of contact, write command: add birthday {name} {yyyy-m-d}
-    8) to see how many days to contact's birthday, write command: days to birthday {name}
+    9) to add birthday of contact, write command: add birthday {name} {yyyy-m-d}
+    10) to see how many days to contact's birthday, write command: days to birthday {name}
 
-    9) to search contact, where is 'text', write command: search {text}
-    10) to see full record of contact, write: phone {name}
-    11) to see all contacts, write command: show all
-    12) to say goodbye, write one of these commands: good bye / close / exit
-    13) to say hello, write command: hello
-    14) to see help, write command: help
+    11) to search contact, where is 'text', write command: search {text}
+    12) to see full record of contact, write: phone {name}
+    13) to see all contacts, write command: show all
+    14) to say goodbye, write one of these commands: good bye / close / exit
+    15) to say hello, write command: hello
+    16) to see help, write command: help
     """
     return rules
 
