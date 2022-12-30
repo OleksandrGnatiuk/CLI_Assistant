@@ -25,7 +25,7 @@ if you want:
 <p>
 
 - [x] to __add e-mail to contact__, write command: `add email {name} {e-mail}`
-- [x] to __change e-mail of contact__, write command: `change email {name} {new phone}`
+- [x] to __change e-mail of contact__, write command: `change email {name} {new e-mail}`
 - [x] to __remove e-mail of contact__, write command: `remove email {name}`
 
 <p>
