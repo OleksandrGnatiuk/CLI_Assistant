@@ -179,7 +179,7 @@ def show_all(s):
 
 def helps(s=None):
     rules = """List of commands:
-    1) to add new contact and one or more phones, write command: add {name} {phone number} {phone number} {phone number}
+    1) to add new contact and one or more phones, write command: add contact {name} {phone number} {phone number} {phone number}
     2) to remove contact, write command: remove contact {name}
 
     3) to add phone, write command: add phone {name} {one phone}
@@ -214,7 +214,7 @@ commands = {
     "add birthday": add_contact_birthday,
     "add email": add_em,
     "days to birthday": days_to_birthday,
-    "add": add_contact,
+    "add contact": add_contact,
     "search": search,
     "phone": contact,
     "show all": show_all,

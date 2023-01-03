@@ -13,6 +13,10 @@ class LetterInPhoneError(Exception):
     """ Exception when a letter is in the phone number """
 
 
+class EmailError(Exception):
+    """ Exception for wrong e-mail """
+
+
 class Field:
     """ Class for creating fields """
 
@@ -100,14 +104,18 @@ class Email(Field):
         return self._value
 
     @staticmethod
-    def validate_email(email: str) -> str:
-        pattern = r"[A-Za-z]+[_.A-Za-z0-9]?[A-Za-z]+@[a-z_]+\.[a-z_]+"
-        result = re.findall(pattern, email)
-        return result[0]
+    def is_validate_email(email: str):
+        pattern = r"[A-Za-z0-9]+[_.A-Za-z0-9]*@[a-z_]+\.[a-z]{2,3}"
+        result = re.fullmatch(pattern, email)
+        if result is not None:
+            return True
+        else:
+            raise EmailError("E-mail is wrong")
+
 
     @Field.value.setter
     def value(self, value: str):
-        if self.validate_email(value):
+        if self.is_validate_email(value):
             self._value = value
 
 
@@ -170,7 +178,8 @@ class Record:
                 return "phone was changed"
 
     def change_email(self, new_email: str):
-        self.email = Email(new_email)
+        if Email.is_validate_email(new_email):
+            self.email = Email(new_email)
 
     def delete_email(self):
         self.email = None
@@ -182,9 +191,8 @@ class Record:
                 self.phones.remove(phone)
 
     def add_email(self, email: str):
-        email = Email(email)
-        if email:
-            self.email = email
+        if Email.is_validate_email(email):
+            self.email = Email(email)
 
     def get_contact(self):
         if self.phones:

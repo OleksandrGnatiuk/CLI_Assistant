@@ -13,7 +13,7 @@ if you want:
 
 <p>
 
-- [x] to __add new contact__ and one or more phones (for example 2 phones), write command: `add {name} {phone number} {phone number}`
+- [x] to __add new contact__ and one or more phones (for example 2 phones), write command: `add contact {name} {phone number} {phone number}`
 - [x] to __remove contact__, write command: `remove contact {name}`
 
 <p>
