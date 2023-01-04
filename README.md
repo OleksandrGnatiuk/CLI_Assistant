@@ -1,3 +1,4 @@
+[![HitCount](http://hits.dwyl.com/OleksandrGnatiuk/CLI_Assistant.svg)](http://hits.dwyl.com/OleksandrGnatiuk/CLI_Assistant)
 
 ## CLI Assistant
 
