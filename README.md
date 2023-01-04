@@ -56,8 +56,8 @@ ___
 - [x] Default destination folders are `documents`, `images`, `video`, `audio` and `archives`.
 - [x] if you want to set your own rules of sorting files you have to change **extension_dict.json** file:
 
-  ```python
-    {
+  ```text
+  {
   "documents": [".doc", ".docx", ".xls", ".xlsx", ".txt", ".pdf"],
   "audio": [".mp3", ".ogg", ".wav", ".amr"],
   "video": [".avi", ".mp4", ".mov", ".mkv"],
