@@ -57,13 +57,13 @@ ___
 - [x] if you want to set your own rules of sorting files you have to change **extension_dict.json** file:
 
   ```python
-{
-    "documents": [".doc", ".docx", ".xls", ".xlsx", ".txt", ".pdf"],
-    "audio": [".mp3", ".ogg", ".wav", ".amr"],
-    "video": [".avi", ".mp4", ".mov", ".mkv"],
-    "images": [".jpeg", ".png", ".jpg", ".svg"],
-    "archives": [".zip", ".gz", ".tar"],
-}
+    {
+  "documents": [".doc", ".docx", ".xls", ".xlsx", ".txt", ".pdf"],
+  "audio": [".mp3", ".ogg", ".wav", ".amr"],
+  "video": [".avi", ".mp4", ".mov", ".mkv"],
+  "images": [".jpeg", ".png", ".jpg", ".svg"],
+  "archives": [".zip", ".gz", ".tar"],
+  }
   ```
 
 - [x] All files with relevant extensions will be moved to these folders;
