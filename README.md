@@ -1,7 +1,7 @@
 
 ## CLI Assistant
 
-The assistant was written in the __OOP paradigm__, the following libraries were used: __re, datetime, pathlib, collections__.
+The assistant was written in the __OOP paradigm__, the following libraries were used: __re, datetime, pathlib, collections, shutil, json, pickle__.
 The address book saves to __pickle__ file.
 ___
 
@@ -40,3 +40,8 @@ if you want:
 - [x] to __see all contacts__, write command: `show all`
 - [x] to __say goodbye__, write one of these commands: `good bye` or `close` or `exit`
 - [x] to __say hello__, write command: `hello`
+
+<p>
+
+- [x] to __sort files in folder__ , write command: `clean-folder <path to folder>`
+
