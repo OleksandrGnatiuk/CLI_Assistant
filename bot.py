@@ -2,6 +2,8 @@ import pickle
 import re
 from Classes import address_book, Record, Name
 from exceptions import input_error
+from pathlib import Path
+from clean_folder.clean import sort_file, show_result
 
 
 def save_to_pickle():
@@ -177,28 +179,41 @@ def show_all(s):
     return result
 
 
+def clean_f(path):
+    folder_to_sort = Path(path)
+    p = Path(path)
+    try:
+        sort_file(folder_to_sort, p)
+    except FileNotFoundError:
+        print("\nThe folder was not found. Check the folder's path and run the command again!.\n")
+        return
+    return show_result(folder_to_sort)
+
+
 def helps(s=None):
     rules = """List of commands:
-    1) to add new contact and one or more phones, write command: add contact {name} {phone number} {phone number} {phone number}
-    2) to remove contact, write command: remove contact {name}
+    1) to add new contact and one or more phones, write command: add contact <name> <phone> <phone> <phone>
+    2) to remove contact, write command: remove contact <name>
 
-    3) to add phone, write command: add phone {name} {one phone}
-    4) to change phone, write command: change phone {name} {old phone} {new phone}
-    5) to remove phone, write command: remove phone {name} {old phone}
+    3) to add phone, write command: add phone <name> <one phone>
+    4) to change phone, write command: change phone <name> <old phone> <new phone>
+    5) to remove phone, write command: remove phone <name> <old phone>
     
-    6) to add e-mail, write command: add email {name} {e-mail}
-    7) to change e-mail, write command: change email {name} {new e-mail}
-    8) to remove e-mail, write command: remove email {name}
+    6) to add e-mail, write command: add email <name> <e-mail>
+    7) to change e-mail, write command: change email <name> <new e-mail>
+    8) to remove e-mail, write command: remove email <name>
 
-    9) to add birthday of contact, write command: add birthday {name} {yyyy-m-d}
-    10) to see how many days to contact's birthday, write command: days to birthday {name}
+    9) to add birthday of contact, write command: add birthday <name> <yyyy-m-d>
+    10) to see how many days to contact's birthday, write command: days to birthday <name>
 
-    11) to search contact, where is 'text', write command: search {text}
-    12) to see full record of contact, write: phone {name}
+    11) to search contact, where is 'text', write command: search <text>
+    12) to see full record of contact, write: phone <name>
     13) to see all contacts, write command: show all
     14) to say goodbye, write one of these commands: good bye / close / exit
     15) to say hello, write command: hello
     16) to see help, write command: help
+    
+    17) to sort file in folder, write command: clean-folder <path to folder>
     """
     return rules
 
@@ -222,6 +237,7 @@ commands = {
     "good bye": say_goodbye,
     "close": say_goodbye,
     "exit": say_goodbye,
+    "clean-folder": clean_f,
     "help": helps
 }
 
