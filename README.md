@@ -1,50 +1,61 @@
-[![HitCount](http://hits.dwyl.com/OleksandrGnatiuk/CLI_Assistant.svg)](http://hits.dwyl.com/OleksandrGnatiuk/CLI_Assistant)
-
 ## CLI Assistant
+This project represents the implementation of a personal assistant with a command line interface. 
+The project is installed as a Python package and can be called anywhere in the system by the appropriate command after installation; 
+This simple python app will help you to manage your contacts and sort files on your computer. 
 
-The assistant was written in the __OOP paradigm__, the following libraries were used: __re, datetime, pathlib, collections, shutil, json, pickle__.
-The address book saves to __pickle__ file.
+### Installation
+
+Download package, unpack it and use next command to install it from unpacked folder:
+
+```bush
+pip install -e .
+```
+
+### Calling
+
+Launch command line and use command `assistant`
+
 ___
 
-### CLI assistant helps to manage the address book
+### Description
 
-if you want:
+CLI Assistant can:
 
-- [x] To __get short tips__ on how to use you can call `help` command at any time during your work with assistant
-
-<p>
-
-- [x] to __add new contact__ and one or more phones (for example 2 phones), write command: `add contact <name> <phone> <phone>`
-- [x] to __remove contact__, write command: `remove contact <name>`
+- [x] To __get short tips on__ how to use you can call `help` command at any time during your work with assistant
 
 <p>
 
-- [x] to __add phone to contact__, write command: `add phone <name> <one phone>`
-- [x] to __change phone of contact__, write command: `change phone <name> <old phone> <new phone>`
-- [x] to __remove phone of contact__, write command: `remove phone <name> <old phone>`
+- [x] to __add new contact__ and one or more phones (for example 2 phones) use command: `add contact <name> <phone> <phone>`
+- [x] to __remove contact__ use command: `remove contact <name>`
 
 <p>
 
-- [x] to __add e-mail to contact__, write command: `add email <name> <e-mail>`
-- [x] to __change e-mail of contact__, write command: `change email <name> <new e-mail>`
-- [x] to __remove e-mail of contact__, write command: `remove email <name>`
+- [x] to __add phone to contact__ use command: `add phone <name> <one phone>`
+- [x] to __change phone of contact__ use command: `change phone <name> <old phone> <new phone>`
+- [x] to __remove phone of contact__ use command: `remove phone <name> <old phone>`
 
 <p>
 
-- [x] to __add birthday of contact__, write command: `add birthday <name> <yyyy-m-d>`
-- [x] to __see how many days to contact's birthday__, write command: `days to birthday <name>`
+- [x] to __add e-mail to contact__ use command: `add email <name> <e-mail>`
+- [x] to __change e-mail of contact__ use command: `change email <name> <new e-mail>`
+- [x] to __remove e-mail of contact__ use command: `remove email <name>`
 
 <p>
 
-- [x] to __search contact__ with <text to search>, write command: `search <text to search>`
-- [x] to __see full record of contact__, write: `phone <name>`
-- [x] to __see all contacts__, write command: `show all`
-- [x] to __say goodbye__, write one of these commands: `good bye` or `close` or `exit`
-- [x] to __say hello__, write command: `hello`
+- [x] to __add birthday of contact__ use command: `add birthday <name> <yyyy-m-d>`
+- [x] to __see how many days to contact's birthday__ use command: `days to birthday <name>`
 
 <p>
 
-- [x] to __sort files in folder__ , write command: `clean-folder <path to folder>`
+- [x] to __search contact__ with < text to search > use command: `search <text to search>`
+- [x] to __see full record of contact__ use command: `phone <name>`
+- [x] to __see all contacts__ use command: `show all`
+- [x] to __say goodbye__ use one of these commands: `good bye` or `close` or `exit`
+- [x] to __say hello__ use command: `hello`
+
+<p>
+
+- [x] to __sort files in folder__ use command: `clean-folder <path to folder>`
 
 ___
 
