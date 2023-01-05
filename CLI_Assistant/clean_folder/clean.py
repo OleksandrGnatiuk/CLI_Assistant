@@ -3,11 +3,11 @@ import sys
 from datetime import datetime
 from pathlib import Path
 import json
-from clean_folder.translate_char import normalize
-from clean_folder.show_result import show_result
+from CLI_Assistant.clean_folder.translate_char import normalize
+from CLI_Assistant.clean_folder.show_result import show_result
 
 
-with open("extension_dict.json", "r") as file:
+with open(r"CLI_Assistant/clean_folder/extension_dict.json", "r") as file:
     extension_dict = json.load(file)
 
 
@@ -40,6 +40,7 @@ def folder_sort(file, to_dir):
     new_file = Path(to_dir, latin_name)
     file_path = is_file_exists(new_file, to_dir)
     file.replace(file_path)
+
 
 def sort_file(folder_to_sort, p):
     """ Check extension of files, subfolders and sort it"""

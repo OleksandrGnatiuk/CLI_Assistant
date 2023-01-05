@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="52e78e16-5a95-4918-9d52-a398509c9cbd" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/CLI_Assistant.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CLI_Assistant.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CLI_Assistant/MANIFEST.in" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/CLI_Assistant/bot.py" beforeDir="false" afterPath="$PROJECT_DIR$/CLI_Assistant/bot.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CLI_Assistant/clean_folder/clean.py" beforeDir="false" afterPath="$PROJECT_DIR$/CLI_Assistant/clean_folder/clean.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CLI_Assistant/exceptions.py" beforeDir="false" afterPath="$PROJECT_DIR$/CLI_Assistant/exceptions.py" afterDir="false" />

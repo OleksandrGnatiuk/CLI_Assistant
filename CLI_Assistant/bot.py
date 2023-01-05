@@ -3,7 +3,7 @@ import re
 from .Classes import address_book, Record, Name
 from .exceptions import input_error
 from pathlib import Path
-from clean_folder.clean import sort_file, show_result
+from CLI_Assistant.clean_folder.clean import sort_file, show_result
 
 
 def save_to_pickle():
