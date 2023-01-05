@@ -1,14 +1,25 @@
-[![HitCount](http://hits.dwyl.com/OleksandrGnatiuk/CLI_Assistant.svg)](http://hits.dwyl.com/OleksandrGnatiuk/CLI_Assistant)
-
 ## CLI Assistant
+This project represents the implementation of a personal assistant with a command line interface. 
+The project is installed as a Python package and can be called anywhere in the system by the appropriate command after installation; 
+This simple python app will help you to manage your contacts and sort files on your computer. 
 
-The assistant was written in the __OOP paradigm__, the following libraries were used: __re, datetime, pathlib, collections, shutil, json, pickle__.
-The address book saves to __pickle__ file.
+
+### Installation
+
+Download package, unpack it and use next command to install it from unpacked folder:
+
+```bush
+pip install -e .
+```
+### Calling
+
+Launch command line and use command `assistant`
+
 ___
 
-### CLI assistant helps to manage the address book
+### Description
 
-if you want:
+CLI Assistant can:
 
 - [x] To __get short tips__ on how to use you can call `help` command at any time during your work with assistant
 
