@@ -1,7 +1,7 @@
 import pickle
 import re
-from Classes import address_book, Record, Name
-from exceptions import input_error
+from .Classes import address_book, Record, Name
+from .exceptions import input_error
 from pathlib import Path
 from clean_folder.clean import sort_file, show_result
 

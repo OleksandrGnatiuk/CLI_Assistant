@@ -1,4 +1,4 @@
-from Classes import LetterInPhoneError, WrongLengthPhoneError, EmailError
+from .Classes import LetterInPhoneError, WrongLengthPhoneError, EmailError
 
 def input_error(func):
     """ Декоратор, що повідомляє про виключення """

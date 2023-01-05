@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(name='CLI_Assistant',
-      version='0.1.2',
+      version='0.1.4',
       description='CLI Assistant helps to manage the address book, organizes file in folder',
       url='https://github.com/OleksandrGnatiuk/CLI_Assistant',
       author='Oleksandr Gnatiuk',
@@ -9,5 +9,6 @@ setup(name='CLI_Assistant',
       include_package_data=True,
       license='MIT',
       packages=find_packages(),
+      data_files=[('CLI_Assistant', ["CLI_Assistant/address_book.bin"])],
       entry_points={'console_scripts': ['assistant = CLI_Assistant.bot:main']}
       )
