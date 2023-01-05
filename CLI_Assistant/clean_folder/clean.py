@@ -7,7 +7,7 @@ from clean_folder.translate_char import normalize
 from clean_folder.show_result import show_result
 
 
-with open(r"clean_folder\extension_dict.json", "r") as file:
+with open(r"clean_folder/extension_dict.json", "r") as file:
     extension_dict = json.load(file)
 
 
