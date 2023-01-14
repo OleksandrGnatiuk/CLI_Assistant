@@ -43,6 +43,12 @@ class Name(Field):
         self._value = value.strip().lower().title()
 
 
+class Address(Field):
+    """ Class for creating contact's address"""
+    pass
+
+
+
 class Phone(Field):
     """ Class for creating fields 'phone' """
 
@@ -74,6 +80,7 @@ class Phone(Field):
         self._value = Phone.sanitize_phone_number(value)
 
 
+
 class Birthday:
     """ Class for creating fields 'birthday' """
 
@@ -98,10 +105,12 @@ class Birthday:
         self.__birthday = self.validate_date(year, month, day)
 
 
+
 class Email(Field):
 
     def __str__(self):
         return self._value
+
 
     @staticmethod
     def is_validate_email(email: str):
@@ -119,12 +128,14 @@ class Email(Field):
             self._value = value
 
 
+
 class Record:
     """ Class for creating contacts """
 
-    def __init__(self, name: Name, phone: list[Phone] = None, birthday=None, email: Email = None):
+    def __init__(self, name: Name, phone: list[Phone] = None, birthday=None, email: Email = None, address=None):
         self.name = name
         self.email = email
+        self.address = address
 
         if birthday is not None:
             self.birthday = Birthday(birthday)
@@ -134,6 +145,7 @@ class Record:
         self.phones = []
         if phone:
             self.phones.extend(phone)
+
 
     def days_to_bd(self):
         cur_date = datetime.now().date()
@@ -154,8 +166,22 @@ class Record:
         else:
             return f"{self.name}'s birthday is unknown"
 
+
     def add_birthday(self, year, month, day):
         self.birthday = Birthday.validate_date(int(year), int(month), int(day))
+
+
+    def add_adrs(self, value):
+        self.address = value
+
+
+    def change_adrs(self, value):
+        self.address = value
+
+
+    def delete_adrs(self):
+        self.address = None
+
 
     def add_phone(self, phone: str):
         phone = Phone(phone)
@@ -204,7 +230,9 @@ class Record:
             "phone": phones,
             "birthday": self.birthday,
             "email": str(self.email),
+            "address": str(self.address),
         }
+
 
 
 class AddressBook(UserDict):

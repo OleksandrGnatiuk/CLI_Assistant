@@ -66,6 +66,43 @@ def add_em(value):
 
 
 @input_error
+def add_address(value):
+    name, address = value.split(" ", 1)
+    name = name.title()
+    if name.title() in address_book:
+        address_book[name.title()].add_adrs(address)
+        save_to_pickle()
+        return f"The address for {name.title()} was recorded"
+    else:
+        return f"Contact {name.title()} does not exist"
+
+
+@input_error
+def change_address(value):
+    name, address = value.split(" ", 1)
+    name = name.title()
+    if name.strip().lower().title() in address_book:
+        address_book[name.title()].change_adrs(address)
+        save_to_pickle()
+        return f"The address for {name.title()} was changed"
+    else:
+        return f"Contact {name.title()} does not exists"
+
+
+
+@input_error
+def remove_address(value):
+    name = value.lower().title().strip()
+    if name.title() in address_book:
+        address_book[name.title()].delete_adrs()
+        save_to_pickle()
+        return f"Address for {name.title()} was delete"
+    else:
+        return f"Contact {name.title()} does not exist"
+
+
+
+@input_error
 def change_em(value: str):
     name, new_em = value.split()
 
@@ -202,18 +239,22 @@ def helps(s=None):
     6) to add e-mail, write command: add email <name> <e-mail>
     7) to change e-mail, write command: change email <name> <new e-mail>
     8) to remove e-mail, write command: remove email <name>
-
-    9) to add birthday of contact, write command: add birthday <name> <yyyy-m-d>
-    10) to see how many days to contact's birthday, write command: days to birthday <name>
-
-    11) to search contact, where is 'text', write command: search <text>
-    12) to see full record of contact, write: phone <name>
-    13) to see all contacts, write command: show all
-    14) to say goodbye, write one of these commands: good bye / close / exit
-    15) to say hello, write command: hello
-    16) to see help, write command: help
     
-    17) to sort file in folder, write command: clean-folder <path to folder>
+    9) to add address, write command: add address <name> <address>
+    10) to change address, write command: change address <name> <new address>
+    11) to remove address, write command: remove address <name>
+
+    12) to add birthday of contact, write command: add birthday <name> <yyyy-m-d>
+    13) to see how many days to contact's birthday, write command: days to birthday <name>
+
+    14) to search contact, where is 'text', write command: search <text>
+    15) to see full record of contact, write: phone <name>
+    16) to see all contacts, write command: show all
+    17) to say goodbye, write one of these commands: good bye / close / exit
+    18) to say hello, write command: hello
+    19) to see help, write command: help
+    
+    20) to sort file in folder, write command: clean-folder <path to folder>
     """
     return rules
 
@@ -224,10 +265,13 @@ commands = {
     "add phone": add_phone,
     "change phone": change_ph,
     "change email": change_em,
+    "change address": change_address,
     "remove phone": remove_phone,
     "remove email": remove_em,
+    "remove address": remove_address,
     "add birthday": add_contact_birthday,
     "add email": add_em,
+    "add address": add_address,
     "days to birthday": days_to_birthday,
     "add contact": add_contact,
     "search": search,

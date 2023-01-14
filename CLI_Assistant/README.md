@@ -46,6 +46,12 @@ CLI Assistant can:
 
 <p>
 
+- [x] to __add address to contact__ use command: `add address <name> <address>`
+- [x] to __change address of contact__ use command: `change address <name> <new address>`
+- [x] to __remove address of contact__ use command: `remove address <name>`
+
+<p>
+
 - [x] to __add birthday of contact__ use command: `add birthday <name> <yyyy-m-d>`
 - [x] to __see how many days to contact's birthday__ use command: `days to birthday <name>`
 
