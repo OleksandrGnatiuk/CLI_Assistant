@@ -10,19 +10,19 @@ class RecordNote:
         self.tags = set()
         self.date = datetime.now().date()
 
-    
-    def add_text(self, text):
-        self.note += f"\n{text}"
-            
+    def __str__(self):
+        result = f'\ndate {self.date}\n{self.note}\n\ntags {self.tags}'
+        return result
+
+    def edit_text(self, text):
+        self.note = text
 
     def add_tags(self, tags: list[str]):
         for tag in tags:
-            self.tags.add(tag)
-            
+            self.tags.add(tag.lower())
 
     def __del__(self):
         return f"The Note was delete"
-    
 
 
 class Notebook:
@@ -45,7 +45,6 @@ class Notebook:
         with open("notes.bin", "wb") as file:
             pickle.dump(cls.notes, file)
 
-
     def add_new_note(self, note: RecordNote):
         id = self.counter + 1
         self.notes[id] = note
@@ -66,8 +65,8 @@ class Notebook:
         tags = ", ".join(self.notes[id].tags)
         return f"\nid: {id}        date: {self.notes[id].date} \n\n{self.notes[id].note}\n\ntags: {tags} \n\n********\n "
 
-
     def id_is_exist(func):
+        """Decorator checks if id exists"""
         def wrapper(*args):
             id = args[1]
             if id in Notebook.notes:
@@ -76,41 +75,49 @@ class Notebook:
                 return result
             else:
                 print(f"\nThe note with id={id} is not exists\n")
+
         return wrapper
 
-
     @id_is_exist
-    def to_add_text(self, id, text):
-        self.notes[id].add_text(text)
-        
+    def to_edit_text(self, id, text):
+        self.notes[id].edit_text(text)
 
     @id_is_exist
     def to_add_tags(self, id, tags: list[str]):
         self.notes[id].add_tags(tags)
-        
-    
+
     @id_is_exist
     def to_remove_note(self, id):
         del self.notes[id]
-        
+
+    def search(self, text_to_search):
+        for id, value in self.notes.items():
+            if text_to_search.lower() in value.note.lower(
+            ) or text_to_search.lower() in value.tags:
+                tags = ", ".join(value.tags)
+                result = f"\nid: {id}        date: {value.date} \n\n{value.note}\n\ntags: {tags} \n\n********\n "
+                print(result)
+
+
+file = Path("notes.bin")
+
+if file.exists():
+    nb = Notebook()
+    nb.notes.update(nb.read_from_file())
+else:
+    nb = Notebook()
 
 if __name__ == "__main__":
-    file = Path(r"C:\Users\Family\Desktop\repositories\CLI_Assistant\CLI_Assistant\notes.bin")
-    
-    if file.exists:
-        nb = Notebook()
-        nb.notes.update(nb.read_from_file())
-    else:
-        nb = Notebook()
-    
     # nb = Notebook()
-
-    text = "Json – is a good way for serializing files in Python"
-    f = RecordNote(text)
-    nb.add_new_note(f)
-    nb.to_add_tags(1, ["Json", "серіалізація"])
-    # nb.to_add_text(1, "Але є ще безліч інших способів серіалізації")
-
+    # text = "Json – is a good way for serializing files in Python"
+    # f = RecordNote(text)
+    # nb.add_new_note(f)
+    # nb.to_add_tags(1, ["Json", "серіалізація"])
+    nb.to_edit_text(1, "Але є ще безліч інших способів серіалізації")
+    # f2 = RecordNote("Pickle is another way for serializating objects")
+    # nb.add_new_note(f2)
+    # nb.to_add_tags(2, ['pickle'])
     # nb.to_remove_note(1)
     # print(nb.show_note(1))
     print(nb.show_all_notes())
+    # nb.search("pickle")

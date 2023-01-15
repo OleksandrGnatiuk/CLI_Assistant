@@ -1,7 +1,7 @@
 ## CLI Assistant
 This project represents the implementation of a personal assistant with a command line interface. 
 The project is installed as a Python package and can be called anywhere in the system by the appropriate command after installation; 
-This simple python app will help you to manage your contacts and sort files on your computer. 
+This simple python app will help you to manage your contacts, notes and sort files on your computer. 
 
 This project was written in the **OOP paradigm**, the following libraries were used: **re, datetime, pathlib, collections, shutil, json, pickle**.
 The address book saves to **pickle** file.
@@ -63,9 +63,18 @@ CLI Assistant can:
 - [x] to __say goodbye__ use one of these commands: `good bye` or `close` or `exit`
 - [x] to __say hello__ use command: `hello`
 
-<p>
+___
 
-- [x] to __sort files in folder__ use command: `clean-folder <path to folder>`
+### Personal notes script
+
+<p> This script can manage personal notes.</p>
+
+- [x] to __add note__ use command:  `add note <text>`
+- [x] to __edit note__ use command:  `edit notes <id> <edited text>`
+- [x] to __add tags__ use command:  `add tags <id> <tag1 tag2 tag3...>`
+- [x] to __show notes__ use one of these commands: `show notes`
+- [x] to __delete notes__ use command: `delete notes <id>`
+- [x] to __search notes__ use command: `search notes <text_to_search>`
 
 ___
 
@@ -73,10 +82,14 @@ ___
 
 <p> This script can sort all files in the folder. The script sorts all files according to file's extensions.</p>
 
-- [x] if this folder is not exists, you'll see a message in console.
-- [x] The script sorts files according to file's extensions and replaces files to the destination folders.
-- [x] Default destination folders are `documents`, `images`, `video`, `audio` and `archives`.
-- [x] if you want to set your own rules of sorting files you have to change **extension_dict.json** file:
+- [x] to __sort files in folder__ use command: `clean-folder <path to folder>`
+
+...
+
+- [ ] if this folder is not exists, you'll see a message in console.
+- [ ] The script sorts files according to file's extensions and replaces files to the destination folders.
+- [ ] Default destination folders are `documents`, `images`, `video`, `audio` and `archives`.
+- [ ] if you want to set your own rules of sorting files you have to change **extension_dict.json** file:
 
   ```text
   {
@@ -88,15 +101,18 @@ ___
   }
   ```
 
-- [x] All files with relevant extensions will be moved to these folders;
-- [x] Other files will be replaced to folder `other`;
-- [x] if these folders were not exist its will be created;
-- [x] The script recursively checks all subfolders and replaces all files to destination folders;
-- [x] Empty folders will be deleted;
-- [x] Files with Cyrillic name will be **renamed to Latin name**;
-- [x] if subfolders involve the files with the same name, these files will be renamed - **date-time will be added to file's name**;
-- [x] All archives will be unpacked to subfolder with the name as archive's name in folder `archive`;
-- [x] if archive is broken, script will continue its work without unpacking this archive. In console you'll see message about this broken archive;
-- [x] When script finishes to clean folder, you'll see the report.
+- [ ] All files with relevant extensions will be moved to these folders;
+- [ ] Other files will be replaced to folder `other`;
+- [ ] if these folders were not exist its will be created;
+- [ ] The script recursively checks all subfolders and replaces all files to destination folders;
+- [ ] Empty folders will be deleted;
+- [ ] Files with Cyrillic name will be **renamed to Latin name**;
+- [ ] if subfolders involve the files with the same name, these files will be renamed - **date-time will be added to file's name**;
+- [ ] All archives will be unpacked to subfolder with the name as archive's name in folder `archive`;
+- [ ] if archive is broken, script will continue its work without unpacking this archive. In console you'll see message about this broken archive;
+- [ ] When script finishes to clean folder, you'll see the report.
+
+___
+
 
 If any questions, please contact to oleksandr.gnatiuk@gmail.com
