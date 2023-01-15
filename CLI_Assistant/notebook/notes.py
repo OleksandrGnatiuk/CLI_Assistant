@@ -1,0 +1,116 @@
+import pickle
+from datetime import datetime
+from pathlib import Path
+
+
+class RecordNote:
+
+    def __init__(self, note: str):
+        self.note = note
+        self.tags = set()
+        self.date = datetime.now().date()
+
+    
+    def add_text(self, text):
+        self.note += f"\n{text}"
+            
+
+    def add_tags(self, tags: list[str]):
+        for tag in tags:
+            self.tags.add(tag)
+            
+
+    def __del__(self):
+        return f"The Note was delete"
+    
+
+
+class Notebook:
+    """Class for creating notes"""
+
+    notes = {}
+    counter = 0
+
+    @classmethod
+    def read_from_file(cls):
+        try:
+            with open("notes.bin", "rb") as file:
+                result = pickle.load(file)
+            return result
+        except FileNotFoundError:
+            cls.notes = {}
+
+    @classmethod
+    def save_to_file(cls):
+        with open("notes.bin", "wb") as file:
+            pickle.dump(cls.notes, file)
+
+
+    def add_new_note(self, note: RecordNote):
+        id = self.counter + 1
+        self.notes[id] = note
+        Notebook.counter += 1
+
+    def show_all_notes(self):
+        if len(self.notes) > 0:
+            result = ""
+            for id, rec in Notebook.notes.items():
+                tags = ", ".join(rec.tags)
+                date = rec.date
+                result += f"\nid: {id}          date: {date} \n\n{rec.note}\n\ntags: {tags} \n\n*********\n"
+            return result
+        else:
+            return f"\nNotebook is empty \n"
+
+    def show_note(self, id):
+        tags = ", ".join(self.notes[id].tags)
+        return f"\nid: {id}        date: {self.notes[id].date} \n\n{self.notes[id].note}\n\ntags: {tags} \n\n********\n "
+
+
+    def id_is_exist(func):
+        def wrapper(*args):
+            id = args[1]
+            if id in Notebook.notes:
+                result = func(*args)
+                Notebook.save_to_file()
+                return result
+            else:
+                print(f"\nThe note with id={id} is not exists\n")
+        return wrapper
+
+
+    @id_is_exist
+    def to_add_text(self, id, text):
+        self.notes[id].add_text(text)
+        
+
+    @id_is_exist
+    def to_add_tags(self, id, tags: list[str]):
+        self.notes[id].add_tags(tags)
+        
+    
+    @id_is_exist
+    def to_remove_note(self, id):
+        del self.notes[id]
+        
+
+if __name__ == "__main__":
+    file = Path(r"C:\Users\Family\Desktop\repositories\CLI_Assistant\CLI_Assistant\notes.bin")
+    
+    if file.exists:
+        nb = Notebook()
+        nb.notes.update(nb.read_from_file())
+    else:
+        nb = Notebook()
+    
+    # nb = Notebook()
+
+    text = "Json – is a good way for serializing files in Python"
+    f = RecordNote(text)
+    nb.add_new_note(f)
+    nb.to_add_tags(1, ["Json", "серіалізація"])
+    # nb.to_add_text(1, "Але є ще безліч інших способів серіалізації")
+
+    # nb.to_remove_note(1)
+    # print(nb.show_note(1))
+    print(nb.show_all_notes())
