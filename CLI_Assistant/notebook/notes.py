@@ -53,7 +53,7 @@ class Notebook:
     def show_all_notes(self):
         if len(self.notes) > 0:
             result = ""
-            for id, rec in Notebook.notes.items():
+            for id, rec in self.notes.items():
                 tags = ", ".join(rec.tags)
                 date = rec.date
                 result += f"\nid: {id}          date: {date} \n\n{rec.note}\n\ntags: {tags} \n\n*********\n"
@@ -100,20 +100,18 @@ class Notebook:
 
 
 file = Path("notes.bin")
+nb = Notebook()
 
 if file.exists():
-    nb = Notebook()
-    nb.notes.update(nb.read_from_file())
-else:
-    nb = Notebook()
+    with open("notes.bin", "rb") as f:
+        nb.notes = pickle.load(f)
 
 if __name__ == "__main__":
-    # nb = Notebook()
     # text = "Json – is a good way for serializing files in Python"
     # f = RecordNote(text)
     # nb.add_new_note(f)
     # nb.to_add_tags(1, ["Json", "серіалізація"])
-    nb.to_edit_text(1, "Але є ще безліч інших способів серіалізації")
+    # nb.to_edit_text(1, "Але є ще безліч інших способів серіалізації")
     # f2 = RecordNote("Pickle is another way for serializating objects")
     # nb.add_new_note(f2)
     # nb.to_add_tags(2, ['pickle'])
