@@ -72,7 +72,8 @@ ___
 - [x] to __add note__ use command:  `add note <text>`
 - [x] to __edit note__ use command:  `edit notes <id> <edited text>`
 - [x] to __add tags__ use command:  `add tags <id> <tag1 tag2 tag3...>`
-- [x] to __show notes__ use one of these commands: `show notes`
+- [x] to __show all notes__ use command: `show notes`
+- [x] to __show any note__ use command: `note <id>`
 - [x] to __delete notes__ use command: `delete notes <id>`
 - [x] to __search notes__ use command: `search notes <text_to_search>`
 
@@ -103,14 +104,14 @@ ___
 
 - [ ] All files with relevant extensions will be moved to these folders;
 - [ ] Other files will be replaced to folder `other`;
-- [ ] if these folders were not exist its will be created;
+- [ ] if these folders were not exist it will be created;
 - [ ] The script recursively checks all subfolders and replaces all files to destination folders;
 - [ ] Empty folders will be deleted;
 - [ ] Files with Cyrillic name will be **renamed to Latin name**;
 - [ ] if subfolders involve the files with the same name, these files will be renamed - **date-time will be added to file's name**;
 - [ ] All archives will be unpacked to subfolder with the name as archive's name in folder `archive`;
 - [ ] if archive is broken, script will continue its work without unpacking this archive. In console you'll see message about this broken archive;
-- [ ] When script finishes to clean folder, you'll see the report.
+- [ ] When script finishes cleaning the folder, you'll see the report.
 
 ___
 

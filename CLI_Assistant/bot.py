@@ -1,17 +1,17 @@
 import pickle
 import re
+from pathlib import Path
 from .Classes import address_book, Record, Name
 from .exceptions import input_error
-from pathlib import Path
 from CLI_Assistant.clean_folder.clean import sort_file, show_result
-from CLI_Assistant.notebook.notes import *
+from CLI_Assistant.notebook.notes import nb, Notebook, RecordNote
 
 
 def save_to_pickle():
     """ Save address book in pickle file"""
 
-    with open("address_book.bin", "wb") as file:
-        pickle.dump(address_book.data, file)
+    with open("address_book.bin", "wb") as fh:
+        pickle.dump(address_book.data, fh)
 
 
 @input_error
@@ -90,7 +90,6 @@ def change_address(value):
         return f"Contact {name.title()} does not exists"
 
 
-
 @input_error
 def remove_address(value):
     name = value.lower().title().strip()
@@ -100,7 +99,6 @@ def remove_address(value):
         return f"Address for {name.title()} was delete"
     else:
         return f"Contact {name.title()} does not exist"
-
 
 
 @input_error
@@ -256,30 +254,50 @@ def helps(s=None):
     19) to see help, write command: help
     
     20) to sort file in folder, write command: clean-folder <path to folder>
+    
+    21) to add note use command: add note <text>
+    22) to edit note use command: edit notes <id> <edited text>
+    23) to add tags use command: add tags <id> <tag1 tag2 tag3...>
+    24) to show all notes use command: show notes
+    25) to show any note use command: note <id>
+    26) to delete note use command: delete notes <id>
+    27) to search notes use command: search notes <text_to_search>
     """
     return rules
 
-def note(value):
-    new_note = RecordNote(value)
-    nb.add_new_note(new_note)
+
+def new_note(text):
+    note_ = RecordNote(text)
+    nb.add_new_note(note_)
+    return f"The note was created"
+
 
 def ed_notes(value):
-    id, text = value.split(" ", 1)
-    nb.to_edit_text(id, text)
+    id_, text = value.split(" ", 1)
+    nb.to_edit_text(id_, text)
+    return f"The note was changed"
+
 
 def tags(value):
-    id, *tags = value.split()
-    nb.to_add_tags(id, list(tags))
+    id_, *tags_ = value.split()
+    nb.to_add_tags(id_, list(tags_))
+    return f"Tags for note id:{id_} was added"
+
 
 def sh_notes(value):
     nb.show_all_notes()
 
-def del_notes(id):
-    nb.to_remove_note(id)
+
+def del_notes(id_):
+    nb.to_remove_note(id_)
+
 
 def search_n(text_to_search):
     nb.search(text_to_search)
 
+
+def note(id_):
+    nb.show_note(id_)
 
 
 # Словник, де ключі - ключові слова в командах, а значення - функції, які при цих командах викликаються
@@ -306,17 +324,18 @@ commands = {
     "exit": say_goodbye,
     "clean-folder": clean_f,
     "help": helps,
-    "add note": note,
+    "add note": new_note,
     "edit notes": ed_notes,
     "add tags": tags,
     "show notes": sh_notes,
     "delete notes": del_notes,
     "search notes": search_n,
+    "note": note,
 
 }
 
 
-@input_error
+# @input_error
 def main():
     while True:
         command = input("Enter command: ")
