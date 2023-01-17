@@ -248,7 +248,7 @@ def helps(s=None):
 
     12) to add birthday of contact, write command: add birthday <name> <yyyy-m-d>
     13) to see how many days to contact's birthday, write command: days to birthday <name>
-    14) to see if there are birthdays in period, write command: birthdays <period - number of days>
+    14) to see list of birthdays in period, write command: birthdays <period - number of days>
 
     15) to search contact, where is 'text', write command: search <text>
     16) to see full record of contact, write: phone <name>
@@ -259,13 +259,13 @@ def helps(s=None):
     
     21) to sort file in folder, write command: clean-folder <path to folder>
     
-    21) to add note use command: add note <text>
-    22) to edit note use command: edit notes <id> <edited text>
-    23) to add tags use command: add tags <id> <tag1 tag2 tag3...>
-    24) to show all notes use command: show notes
-    25) to show any note use command: note <id>
-    26) to delete note use command: delete notes <id>
-    27) to search notes use command: search notes <text_to_search>
+    22) to add note use command: add note <text>
+    23) to edit note use command: edit notes <id> <edited text>
+    24) to add tags use command: add tags <id> <tag1 tag2 tag3...>
+    25) to show all notes use command: show notes
+    26) to show any note use command: note <id>
+    27) to delete note use command: delete notes <id>
+    28) to search notes use command: search notes <text_to_search>
     """
     return rules
 
