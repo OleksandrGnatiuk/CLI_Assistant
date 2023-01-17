@@ -96,7 +96,7 @@ class Notebook:
         for id_, value in self.notes.items():
             if text_to_search.lower().strip() in value.note.lower() or text_to_search.lower() in value.tags:
                 tags = ", ".join(value.tags)
-                result = f"\nid: {id_}    date: {value.date} \n\n{value.note}\n\ntags: {tags} \n========\n "
+                result = f"id: {id_}    date: {value.date} \n{value.note}\ntags: {tags} \n========\n "
                 print(result)
 
 

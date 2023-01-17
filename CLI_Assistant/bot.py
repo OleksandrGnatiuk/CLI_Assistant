@@ -203,6 +203,7 @@ def contact(name):
     else:
         return f"Contact {name.title()} does not exist"
 
+
 @input_error
 def show_all(s):
     """ Функція виводить всі записи в телефонній книзі при команді 'show all' """
@@ -214,6 +215,7 @@ def show_all(s):
         result += f"{record.get_contact()}\n"
     return result
 
+
 @input_error
 def clean_f(path):
     folder_to_sort = Path(path)
@@ -224,6 +226,7 @@ def clean_f(path):
         print("\nThe folder was not found. Check the folder's path and run the command again!.\n")
         return
     return show_result(folder_to_sort)
+
 
 @input_error
 def helps(s=None):
@@ -245,15 +248,16 @@ def helps(s=None):
 
     12) to add birthday of contact, write command: add birthday <name> <yyyy-m-d>
     13) to see how many days to contact's birthday, write command: days to birthday <name>
+    14) to see if there are birthdays in period, write command: birthdays <period - number of days>
 
-    14) to search contact, where is 'text', write command: search <text>
-    15) to see full record of contact, write: phone <name>
-    16) to see all contacts, write command: show all
-    17) to say goodbye, write one of these commands: good bye / close / exit
-    18) to say hello, write command: hello
-    19) to see help, write command: help
+    15) to search contact, where is 'text', write command: search <text>
+    16) to see full record of contact, write: phone <name>
+    17) to see all contacts, write command: show all
+    18) to say goodbye, write one of these commands: good bye / close / exit
+    19) to say hello, write command: hello
+    20) to see help, write command: help
     
-    20) to sort file in folder, write command: clean-folder <path to folder>
+    21) to sort file in folder, write command: clean-folder <path to folder>
     
     21) to add note use command: add note <text>
     22) to edit note use command: edit notes <id> <edited text>
@@ -265,11 +269,13 @@ def helps(s=None):
     """
     return rules
 
+
 @input_error
 def new_note(text):
     note_ = RecordNote(text)
     nb.add_new_note(note_)
     return f"The note was created"
+
 
 @input_error
 def ed_notes(value):
@@ -277,11 +283,13 @@ def ed_notes(value):
     nb.to_edit_text(id_, text)
     return f"The note was changed"
 
+
 @input_error
 def tags(value):
     id_, *tags_ = value.split()
     nb.to_add_tags(id_, list(tags_))
     return f"Tags for note id:{id_} was added"
+
 
 @input_error
 def sh_notes(value):
@@ -307,9 +315,17 @@ def note(id_):
     return ""
 
 
+def get_birthdays(value=None):
+    if value is None:
+        period = 7
+    else:
+        period = int(value.strip())
+    address_book.list_of_birthday(period)
+
 
 # Словник, де ключі - ключові слова в командах, а значення - функції, які при цих командах викликаються
 commands = {
+    "birthdays": get_birthdays,
     "remove contact": remove_contact,
     "add phone": add_phone,
     "change phone": change_ph,

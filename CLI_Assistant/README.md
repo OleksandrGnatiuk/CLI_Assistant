@@ -54,6 +54,7 @@ CLI Assistant can:
 
 - [x] to __add birthday of contact__ use command: `add birthday <name> <yyyy-m-d>`
 - [x] to __see how many days to contact's birthday__ use command: `days to birthday <name>`
+- [x] to __see list of birthdays in period__ use command: `birthdays <number of days>`
 
 <p>
 

@@ -3,6 +3,7 @@ from datetime import datetime
 import pickle
 from pathlib import Path
 import re
+from .list_of_birthdays import get_birthdays_per_week
 
 
 class WrongLengthPhoneError(Exception):
@@ -240,9 +241,30 @@ class AddressBook(UserDict):
         for record in self.data.values():
             yield record.get_contact()
 
+    def list_of_birthday(self, period: int):
+        users = []
+        for name, record in self.data.items():
+            dct = dict()
+            birthday = datetime.strptime(record.birthday, '%Y-%m-%d')
+            dct[name] = birthday
+            users.append(dct)
+        get_birthdays_per_week(users, period)
+        return ""
+
 
 p = Path("address_book.bin")
 address_book = AddressBook()
+
 if p.exists():
     with open("address_book.bin", "rb") as file:
         address_book.data = pickle.load(file)
+
+# roma = Record("Roman")
+# roma.add_birthday(2016, 1, 19)
+# address_book.add_record(roma)
+#
+# tanya = Record("Тетяна")
+# tanya.add_birthday(1985, 1, 23)
+# address_book.add_record(tanya)
+
+# print(address_book.list_of_birthday(7))
