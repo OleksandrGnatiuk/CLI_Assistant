@@ -1,4 +1,4 @@
-from .Classes import LetterInPhoneError, WrongLengthPhoneError, EmailError
+from .classes import LetterInPhoneError, WrongLengthPhoneError, EmailError
 
 
 def input_error(func):

@@ -3,11 +3,11 @@ import sys
 from datetime import datetime
 from pathlib import Path
 import json
-from CLI_Assistant.clean_folder.translate_char import normalize
-from CLI_Assistant.clean_folder.show_result import show_result
+from .translate_char import normalize
+from .show_result import show_result
 
 
-with open(r"CLI_Assistant/clean_folder/extension_dict.json", "r") as file:
+with open(r"CLI_Assistant/extension_dict.json", "r") as file:
     extension_dict = json.load(file)
 
 

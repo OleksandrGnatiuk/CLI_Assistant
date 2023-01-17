@@ -1,10 +1,10 @@
 import pickle
 import re
 from pathlib import Path
-from .Classes import address_book, Record, Name
+from .classes import *
 from .exceptions import input_error
-from CLI_Assistant.clean_folder.clean import sort_file, show_result
-from CLI_Assistant.notebook.notes import nb, Notebook, RecordNote
+from .clean import sort_file, show_result
+from .notes import *
 
 
 def save_to_pickle():
@@ -203,7 +203,7 @@ def contact(name):
     else:
         return f"Contact {name.title()} does not exist"
 
-
+@input_error
 def show_all(s):
     """ Функція виводить всі записи в телефонній книзі при команді 'show all' """
 
@@ -214,7 +214,7 @@ def show_all(s):
         result += f"{record.get_contact()}\n"
     return result
 
-
+@input_error
 def clean_f(path):
     folder_to_sort = Path(path)
     p = Path(path)
@@ -225,7 +225,7 @@ def clean_f(path):
         return
     return show_result(folder_to_sort)
 
-
+@input_error
 def helps(s=None):
     rules = """List of commands:
     1) to add new contact and one or more phones, write command: add contact <name> <phone> <phone> <phone>
@@ -265,39 +265,47 @@ def helps(s=None):
     """
     return rules
 
-
+@input_error
 def new_note(text):
     note_ = RecordNote(text)
     nb.add_new_note(note_)
     return f"The note was created"
 
-
+@input_error
 def ed_notes(value):
     id_, text = value.split(" ", 1)
     nb.to_edit_text(id_, text)
     return f"The note was changed"
 
-
+@input_error
 def tags(value):
     id_, *tags_ = value.split()
     nb.to_add_tags(id_, list(tags_))
     return f"Tags for note id:{id_} was added"
 
-
+@input_error
 def sh_notes(value):
     nb.show_all_notes()
+    return ""
 
 
+@input_error
 def del_notes(id_):
     nb.to_remove_note(id_)
+    return ""
 
 
+@input_error
 def search_n(text_to_search):
     nb.search(text_to_search)
+    return ""
 
 
+@input_error
 def note(id_):
     nb.show_note(id_)
+    return ""
+
 
 
 # Словник, де ключі - ключові слова в командах, а значення - функції, які при цих командах викликаються
@@ -315,7 +323,6 @@ commands = {
     "add address": add_address,
     "days to birthday": days_to_birthday,
     "add contact": add_contact,
-    "search": search,
     "phone": contact,
     "show all": show_all,
     "hello": say_hello,
@@ -331,11 +338,11 @@ commands = {
     "delete notes": del_notes,
     "search notes": search_n,
     "note": note,
-
+    "search": search,
 }
 
 
-# @input_error
+@input_error
 def main():
     while True:
         command = input("Enter command: ")

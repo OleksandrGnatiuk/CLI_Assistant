@@ -18,7 +18,7 @@ def show_result(p):
         print(f" ---- {v}")
 
     print()
-    print("               *** File sorting completed successfully! ***   ")
+    print("               *** File sorting is completed successfully! ***   ")
     print("---------------------------------------------------------------------------")
     print("| {:^14} |{:^9}| {:^40} ".format("Folder", "files,pcs", "file's extensions"))
     print("---------------------------------------------------------------------------")

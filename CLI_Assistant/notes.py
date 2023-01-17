@@ -45,6 +45,7 @@ class Notebook:
         id_ = self.counter + 1
         self.notes[id_] = note
         Notebook.counter += 1
+        self.save_to_file()
 
     def show_all_notes(self):
         if len(self.notes) > 0:
@@ -52,16 +53,17 @@ class Notebook:
             for id_, rec in self.notes.items():
                 tags = ", ".join(rec.tags)
                 date = rec.date
-                result += f"\nid: {id_}      date: {date} \n\n{rec.note}\ntags: {tags} \n=========\n"
-            return result
+                result += f"\nid: {id_}      date: {date} \n{rec.note}\ntags: {tags} \n=========\n"
+            print(result)
         else:
-            return f"\nNotebook is empty \n"
+            print(f"Notebook is empty")
+
 
     def id_is_exist(func):
         """Decorator checks if id exists"""
         def wrapper(*args):
             id_ = args[1]
-            if id_ in args[0].notes:
+            if int(id_) in args[0].notes:
                 result = func(*args)
                 Notebook.save_to_file()
                 return result
@@ -72,27 +74,27 @@ class Notebook:
 
     @id_is_exist
     def to_edit_text(self, id_, text_):
-        self.notes[id_].edit_text(text_)
+        self.notes[int(id_)].edit_text(text_)
 
     @id_is_exist
     def to_add_tags(self, id_, tags: list[str]):
-        self.notes[id_].add_tags(tags)
+        self.notes[int(id_)].add_tags(tags)
 
     @id_is_exist
     def to_remove_note(self, id_):
-        del self.notes[id_]
+        del self.notes[int(id_)]
+        print(f"The note id:{id_} was delete!")
 
     @id_is_exist
     def show_note(self, id_):
-        tags = ", ".join(self.notes[id_].tags)
-        return f"\nid: {id_}     date: {self.notes[id_].date} \n\n{self.notes[id_].note}\ntags: {tags} \n========\n "
+        tags = ", ".join(self.notes[int(id_)].tags)
+        print(f"\nid: {id_}     date: {self.notes[int(id_)].date} \n{self.notes[int(id_)].note}\ntags: {tags} \n========\n ")
 
 
 
     def search(self, text_to_search):
         for id_, value in self.notes.items():
-            if text_to_search.lower() in value.note.lower(
-            ) or text_to_search.lower() in value.tags:
+            if text_to_search.lower().strip() in value.note.lower() or text_to_search.lower() in value.tags:
                 tags = ", ".join(value.tags)
                 result = f"\nid: {id_}    date: {value.date} \n\n{value.note}\n\ntags: {tags} \n========\n "
                 print(result)
@@ -106,4 +108,7 @@ if file.exists():
         dct = pickle.load(f)
         nb.notes.update(dct)
         ids = [int(i) for i in nb.notes]
-        nb.counter = max(ids)
+        if len(ids) > 0:
+            nb.counter = max(ids)
+        else:
+            nb.counter = 0
