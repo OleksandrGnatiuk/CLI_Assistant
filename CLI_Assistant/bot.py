@@ -266,6 +266,7 @@ def helps(s=None):
     26) to show any note use command: note <id>
     27) to delete note use command: delete notes <id>
     28) to search notes use command: search notes <text_to_search>
+    29) to search tags use command: search tags <tag_to_search>
     """
     return rules
 
@@ -305,9 +306,13 @@ def del_notes(id_):
 
 @input_error
 def search_n(text_to_search):
-    nb.search(text_to_search)
+    nb.search_note(text_to_search)
     return ""
 
+@input_error
+def search_t(tag_to_search):
+    nb.search_tag(tag_to_search)
+    return ""
 
 @input_error
 def note(id_):
@@ -353,6 +358,7 @@ commands = {
     "show notes": sh_notes,
     "delete notes": del_notes,
     "search notes": search_n,
+    "search tags": search_t,
     "note": note,
     "search": search,
 }

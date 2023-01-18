@@ -78,6 +78,7 @@ ___
 - [x] to __show any note__ use command: `note <id>`
 - [x] to __delete notes__ use command: `delete notes <id>`
 - [x] to __search notes__ use command: `search notes <text_to_search>`
+- [x] to __search tags__ use command: `search tags <tag_to_search>`
 
 ___
 

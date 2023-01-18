@@ -58,7 +58,6 @@ class Notebook:
         else:
             print(f"Notebook is empty")
 
-
     def id_is_exist(func):
         """Decorator checks if id exists"""
         def wrapper(*args):
@@ -90,11 +89,16 @@ class Notebook:
         tags = ", ".join(self.notes[int(id_)].tags)
         print(f"\nid: {id_}     date: {self.notes[int(id_)].date} \n{self.notes[int(id_)].note}\ntags: {tags} \n========\n ")
 
-
-
-    def search(self, text_to_search):
+    def search_note(self, text_to_search):
         for id_, value in self.notes.items():
-            if text_to_search.lower().strip() in value.note.lower() or text_to_search.lower() in value.tags:
+            if text_to_search.lower().strip() in value.note.lower():
+                tags = ", ".join(value.tags)
+                result = f"id: {id_}    date: {value.date} \n{value.note}\ntags: {tags} \n========\n "
+                print(result)
+
+    def search_tag(self, tag_to_search):
+        for id_, value in self.notes.items():
+            if tag_to_search.lower().strip() in value.tags:
                 tags = ", ".join(value.tags)
                 result = f"id: {id_}    date: {value.date} \n{value.note}\ntags: {tags} \n========\n "
                 print(result)
