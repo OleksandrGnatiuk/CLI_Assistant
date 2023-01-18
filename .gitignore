@@ -124,8 +124,11 @@ venv.bak/
 .mypy_cache/
 .dmypy.json
 dmypy.json
-.bin
+
 
 # Pyre type checker
 .pyre/
 .gitignore
+
+address_book.bin
+notes.bin
