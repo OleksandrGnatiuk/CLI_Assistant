@@ -294,30 +294,28 @@ def tags(value):
 
 @input_error
 def sh_notes(value):
-    nb.show_all_notes()
-    return ""
+    return nb.show_all_notes()
 
 
 @input_error
 def del_notes(id_):
-    nb.to_remove_note(id_)
-    return ""
+    return nb.to_remove_note(id_)
 
 
 @input_error
 def search_n(text_to_search):
-    nb.search_note(text_to_search)
-    return ""
+    return nb.search_note(text_to_search)
+
 
 @input_error
 def search_t(tag_to_search):
-    nb.search_tag(tag_to_search)
-    return ""
+    return nb.search_tag(tag_to_search)
+
 
 @input_error
 def note(id_):
-    nb.show_note(id_)
-    return ""
+    return nb.show_note(id_)
+
 
 
 def get_birthdays(value=None):
@@ -325,7 +323,7 @@ def get_birthdays(value=None):
         period = 7
     else:
         period = int(value.strip())
-    address_book.list_of_birthday(period)
+    return address_book.list_of_birthday(period)
 
 
 # Словник, де ключі - ключові слова в командах, а значення - функції, які при цих командах викликаються

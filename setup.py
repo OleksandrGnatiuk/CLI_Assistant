@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(name='CLI_Assistant',
-      version='0.1.7',
+      version='0.1.8',
       description='CLI Assistant helps to manage the address book, notes, organizes file in folder',
       url='https://github.com/OleksandrGnatiuk/CLI_Assistant',
       author='Oleksandr Gnatiuk',

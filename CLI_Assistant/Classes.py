@@ -1,9 +1,8 @@
 from collections import UserDict
-from datetime import datetime
+from datetime import datetime, timedelta
 import pickle
 from pathlib import Path
 import re
-from .list_of_birthdays import get_birthdays_per_week
 
 
 class WrongLengthPhoneError(Exception):
@@ -248,8 +247,25 @@ class AddressBook(UserDict):
             birthday = datetime.strptime(record.birthday, '%Y-%m-%d')
             dct[name] = birthday
             users.append(dct)
-        get_birthdays_per_week(users, period)
-        return ""
+
+        current_date = datetime.now()
+        current_date = current_date.date()
+        end = current_date + timedelta(days=period)
+
+        list_of_birthdays = "\nList of birthdays: \n"
+        for user in users:
+            for name, birthday in user.items():
+                # замінюємо рік народження іменинників на поточний рік, щоб можна було порівнювати дати
+                str_b = birthday.strftime('%y %m %d').split()
+                str_b[0] = str(current_date.year)
+                str_b = " ".join(str_b)
+                birthday = datetime.strptime(str_b, '%Y %m %d')
+                birthday = birthday.date()
+
+                # перевіряємо чи припадає д.н. людини на заданий період:
+                if current_date <= birthday < end:
+                    list_of_birthdays += f"{birthday}: {name}\n"
+        return list_of_birthdays
 
 
 p = Path("address_book.bin")

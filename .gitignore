@@ -133,3 +133,4 @@ dmypy.json
 address_book.bin
 notes.bin
 .idea
+CLI_Assistant/.idea
