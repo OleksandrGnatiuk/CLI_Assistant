@@ -250,24 +250,26 @@ class AddressBook(UserDict):
         for name, record in self.data.items():
             # замінюємо рік народження іменинників на поточний рік, щоб можна було порівнювати дати
             birthday = record.birthday
-            str_b = birthday.split("-")
-            str_b[0] = str(current_date.year)
-            str_b = " ".join(str_b)
-            birthday = datetime.strptime(str_b, '%Y %m %d')
-            birthday = birthday.date()
+            if birthday:
+                str_b = birthday.split("-")
+                str_b[0] = str(current_date.year)
+                str_b = " ".join(str_b)
+                birthday = datetime.strptime(str_b, '%Y %m %d')
+                birthday = birthday.date()
 
-            # перевіряємо чи припадає д.н. людини на заданий період:
-            if current_date <= birthday < end:
-                bd = (birthday, name.title())
-                list_of_birthdays.append(bd)
+                # перевіряємо чи припадає д.н. людини на заданий період:
+                if current_date <= birthday < end:
+                    bd = (birthday, name.title())
+                    list_of_birthdays.append(bd)
         # сортуємо список іменинників по порядку днів нарождень
         list_of_birthdays.sort(key=lambda x: x[0])
-
-        result = f"List of birthday:\n"
-        for person in list_of_birthdays:
-            s = f"{person[0]} {person[1]}\n"
-            result += s
-
+        if len(list_of_birthdays) == 0:
+            return "List of birthday is empty in this period"
+        else:
+            result = f"List of birthday:\n"
+            for person in list_of_birthdays:
+                s = f"{person[0]} {person[1]}\n"
+                result += s
         return result
 
 
