@@ -126,7 +126,12 @@ class Email(Field):
 class Record:
     """ Class for creating contacts """
 
-    def __init__(self, name: Name, phone: list[Phone] = None, birthday=None, email: Email = None, address=None):
+    def __init__(self,
+                 name: Name,
+                 phone: list[Phone] = None,
+                 birthday=None,
+                 email: Email = None,
+                 address=None):
         self.name = name
         self.email = email
         self.address = address
@@ -279,4 +284,3 @@ address_book = AddressBook()
 if p.exists():
     with open("address_book.bin", "rb") as file:
         address_book.data = pickle.load(file)
-

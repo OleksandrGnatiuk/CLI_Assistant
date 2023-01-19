@@ -223,7 +223,9 @@ def clean_f(path):
     try:
         sort_file(folder_to_sort, p)
     except FileNotFoundError:
-        print("\nThe folder was not found. Check the folder's path and run the command again!.\n")
+        print(
+            "\nThe folder was not found. Check the folder's path and run the command again!.\n"
+        )
         return
     return show_result(folder_to_sort)
 

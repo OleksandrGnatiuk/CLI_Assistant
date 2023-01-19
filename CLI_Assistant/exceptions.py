@@ -22,4 +22,5 @@ def input_error(func):
             return "E-mail is wrong!"
         except Exception:
             return "Mistake"
-    return wrapper 
+
+    return wrapper

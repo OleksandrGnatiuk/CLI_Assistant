@@ -6,7 +6,6 @@ import json
 from .translate_char import normalize
 from .show_result import show_result
 
-
 with open(r"CLI_Assistant/extension_dict.json", "r") as file:
     extension_dict = json.load(file)
 
@@ -45,7 +44,8 @@ def folder_sort(file, to_dir):
 def sort_file(folder_to_sort, p):
     """ Check extension of files, subfolders and sort it"""
     for i in p.iterdir():
-        if i.name in ("documents", "audio", "video", "images", "archives", "other"): # the script ignores these folders.
+        if i.name in ("documents", "audio", "video", "images", "archives",
+                      "other"):  # the script ignores these folders.
             continue
         if i.is_file():
             flag = False  # if flag stay False - file's extension is not in extension_dict and we need move this file to "other"
@@ -62,7 +62,9 @@ def sort_file(folder_to_sort, p):
                 is_fold_exists(i, to_dir)
         elif i.is_dir():
             if len(list(i.iterdir())) != 0:
-                sort_file(folder_to_sort, i) # if the folder is not empty, recursively sort_file()
+                sort_file(
+                    folder_to_sort,
+                    i)  # if the folder is not empty, recursively sort_file()
             else:
                 shutil.rmtree(i)  # delete empty folders
 
@@ -72,11 +74,16 @@ def sort_file(folder_to_sort, p):
             for arch in j.iterdir():
                 if arch.is_file() and arch.suffix in (".zip", ".gz", ".tar"):
                     try:
-                        arch_dir_name = arch.resolve().stem  # створюємо назву папки, куди розпаковуємо архів (за назвою самого архіва)
-                        path_to_unpack = Path(p, "archives", arch_dir_name) # створюємо шлях до папки розпаковки архіва
+                        arch_dir_name = arch.resolve(
+                        ).stem  # створюємо назву папки, куди розпаковуємо архів (за назвою самого архіва)
+                        path_to_unpack = Path(
+                            p, "archives", arch_dir_name
+                        )  # створюємо шлях до папки розпаковки архіва
                         shutil.unpack_archive(arch, path_to_unpack)
                     except:
-                        print(f"Attention: Error unpacking the archive '{arch.name}'!\n")
+                        print(
+                            f"Attention: Error unpacking the archive '{arch.name}'!\n"
+                        )
                     finally:
                         continue
                 else:
@@ -87,14 +94,17 @@ def sort_file(folder_to_sort, p):
 
 
 def main():
-    path = sys.argv[1]  # run from the command line: `clean-folder /path/to folder/you want to clean/`
+    path = sys.argv[
+        1]  # run from the command line: `clean-folder /path/to folder/you want to clean/`
     # path = r"C:\Users\Rezerv\Desktop\trash"
     folder_to_sort = Path(path)
     p = Path(path)
     try:
         sort_file(folder_to_sort, p)
     except FileNotFoundError:
-        print("\nThe folder was not found. Check the folder's path and run the command again!.\n")
+        print(
+            "\nThe folder was not found. Check the folder's path and run the command again!.\n"
+        )
         return
     return show_result(folder_to_sort)
 
