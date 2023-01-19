@@ -4,7 +4,7 @@ The project is installed as a Python package and can be called anywhere in the s
 This simple python app will help you to manage your contacts, notes and sort files on your computer. 
 
 This project was written in the **OOP paradigm**, the following libraries were used: **re, datetime, pathlib, collections, shutil, json, pickle**.
-The address book saves to **pickle** file.
+The address book and note book save to **pickle** file.
 
 
 ### Installation
@@ -54,8 +54,7 @@ CLI Assistant can:
 
 - [x] to __add birthday of contact__ use command: `add birthday <name> <yyyy-m-d>`
 - [x] to __see how many days to contact's birthday__ use command: `days to birthday <name>`
-- [x] to __see list of birthdays in period__ use command: `birthdays <number of days>`
-
+- [x] to __see list of birthdays in period__ (sorted by days of birthday) use command: `birthdays <number of days>`
 
 <p>
 

@@ -4,7 +4,7 @@ The project is installed as a Python package and can be called anywhere in the s
 This simple python app will help you to manage your contacts, notes and sort files on your computer. 
 
 This project was written in the **OOP paradigm**, the following libraries were used: **re, datetime, pathlib, collections, shutil, json, pickle**.
-The address book saves to **pickle** file.
+The address book and note book save to **pickle** file.
 
 
 ### Installation
