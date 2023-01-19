@@ -278,11 +278,3 @@ if p.exists():
     with open("address_book.bin", "rb") as file:
         address_book.data = pickle.load(file)
 
-# sasha = Record("sasha")
-# sasha.add_birthday(1976,3,7)
-# address_book.add_record(sasha)
-#
-# roman = Record("roman")
-# address_book.add_record(roman)
-# roman.add_birthday(2016,12,2)
-# print(address_book.list_of_birthday(500))

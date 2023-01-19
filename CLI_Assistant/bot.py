@@ -229,49 +229,6 @@ def clean_f(path):
 
 
 @input_error
-def helps(s=None):
-    rules = """List of commands:
-    1) to add new contact and one or more phones, write command: add contact <name> <phone> <phone> <phone>
-    2) to remove contact, write command: remove contact <name>
-
-    3) to add phone, write command: add phone <name> <one phone>
-    4) to change phone, write command: change phone <name> <old phone> <new phone>
-    5) to remove phone, write command: remove phone <name> <old phone>
-    
-    6) to add e-mail, write command: add email <name> <e-mail>
-    7) to change e-mail, write command: change email <name> <new e-mail>
-    8) to remove e-mail, write command: remove email <name>
-    
-    9) to add address, write command: add address <name> <address>
-    10) to change address, write command: change address <name> <new address>
-    11) to remove address, write command: remove address <name>
-
-    12) to add birthday of contact, write command: add birthday <name> <yyyy-m-d>
-    13) to see how many days to contact's birthday, write command: days to birthday <name>
-    14) to see list of birthdays in period, write command: birthdays <period - number of days>
-
-    15) to search contact, where is 'text', write command: search <text>
-    16) to see full record of contact, write: phone <name>
-    17) to see all contacts, write command: show all
-    18) to say goodbye, write one of these commands: good bye / close / exit
-    19) to say hello, write command: hello
-    20) to see help, write command: help
-    
-    21) to sort file in folder, write command: clean-folder <path to folder>
-    
-    22) to add note use command: add note <text>
-    23) to edit note use command: edit notes <id> <edited text>
-    24) to add tags use command: add tags <id> <tag1 tag2 tag3...>
-    25) to show all notes use command: show notes
-    26) to show any note use command: note <id>
-    27) to delete note use command: delete notes <id>
-    28) to search notes use command: search notes <text_to_search>
-    29) to search tags use command: search tags <tag_to_search>
-    """
-    return rules
-
-
-@input_error
 def new_note(text):
     note_ = RecordNote(text)
     nb.add_new_note(note_)
@@ -317,13 +274,55 @@ def note(id_):
     return nb.show_note(id_)
 
 
-
 def get_birthdays(value=None):
     if value is None:
         period = 7
     else:
         period = int(value.strip())
     return address_book.list_of_birthday(period)
+
+
+@input_error
+def helps(s=None):
+    rules = """List of commands:
+    1) to add new contact and one or more phones, write command: add contact <name> <phone> <phone> <phone>
+    2) to remove contact, write command: remove contact <name>
+
+    3) to add phone, write command: add phone <name> <one phone>
+    4) to change phone, write command: change phone <name> <old phone> <new phone>
+    5) to remove phone, write command: remove phone <name> <old phone>
+
+    6) to add e-mail, write command: add email <name> <e-mail>
+    7) to change e-mail, write command: change email <name> <new e-mail>
+    8) to remove e-mail, write command: remove email <name>
+
+    9) to add address, write command: add address <name> <address>
+    10) to change address, write command: change address <name> <new address>
+    11) to remove address, write command: remove address <name>
+
+    12) to add birthday of contact, write command: add birthday <name> <yyyy-m-d>
+    13) to see how many days to contact's birthday, write command: days to birthday <name>
+    14) to see list of birthdays in period, write command: birthdays <period - number of days>
+
+    15) to search contact, where is 'text', write command: search <text>
+    16) to see full record of contact, write: phone <name>
+    17) to see all contacts, write command: show all
+    18) to say goodbye, write one of these commands: good bye / close / exit
+    19) to say hello, write command: hello
+    20) to see help, write command: help
+
+    21) to sort file in folder, write command: clean-folder <path to folder>
+
+    22) to add note use command: add note <text>
+    23) to edit note use command: edit notes <id> <edited text>
+    24) to add tags use command: add tags <id> <tag1 tag2 tag3...>
+    25) to show all notes use command: show notes
+    26) to show any note use command: note <id>
+    27) to delete note use command: delete notes <id>
+    28) to search notes use command: search notes <text_to_search>
+    29) to search tags use command: search tags <tag_to_search>
+    """
+    return rules
 
 
 # Словник, де ключі - ключові слова в командах, а значення - функції, які при цих командах викликаються
