@@ -72,7 +72,7 @@ ___
 <p> This script can manage personal notes.</p>
 
 - [x] to __add note__ use command:  `add note <text>`
-- [x] to __edit note__ use command:  `edit notes <id> <edited text>`
+- [x] to __edit note__ use command:  `edit note <id> <edited text>`
 - [x] to __add tags__ use command:  `add tags <id> <tag1 tag2 tag3...>`
 - [x] to __show all notes__ use command: `show notes`
 - [x] to __show any note__ use command: `note <id>`

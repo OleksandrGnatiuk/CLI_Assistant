@@ -241,31 +241,34 @@ class AddressBook(UserDict):
             yield record.get_contact()
 
     def list_of_birthday(self, period: int):
-        users = []
-        for name, record in self.data.items():
-            dct = dict()
-            birthday = datetime.strptime(record.birthday, '%Y-%m-%d')
-            dct[name] = birthday
-            users.append(dct)
 
         current_date = datetime.now()
         current_date = current_date.date()
         end = current_date + timedelta(days=period)
 
-        list_of_birthdays = "\nList of birthdays: \n"
-        for user in users:
-            for name, birthday in user.items():
-                # замінюємо рік народження іменинників на поточний рік, щоб можна було порівнювати дати
-                str_b = birthday.strftime('%y %m %d').split()
-                str_b[0] = str(current_date.year)
-                str_b = " ".join(str_b)
-                birthday = datetime.strptime(str_b, '%Y %m %d')
-                birthday = birthday.date()
+        list_of_birthdays = []
+        for name, record in self.data.items():
+            # замінюємо рік народження іменинників на поточний рік, щоб можна було порівнювати дати
+            birthday = record.birthday
+            str_b = birthday.split("-")
+            str_b[0] = str(current_date.year)
+            str_b = " ".join(str_b)
+            birthday = datetime.strptime(str_b, '%Y %m %d')
+            birthday = birthday.date()
 
-                # перевіряємо чи припадає д.н. людини на заданий період:
-                if current_date <= birthday < end:
-                    list_of_birthdays += f"{birthday}: {name}\n"
-        return list_of_birthdays
+            # перевіряємо чи припадає д.н. людини на заданий період:
+            if current_date <= birthday < end:
+                bd = (birthday, name.title())
+                list_of_birthdays.append(bd)
+        # сортуємо список іменинників по порядку днів нарождень
+        list_of_birthdays.sort(key=lambda x: x[0])
+
+        result = f"List of birthday:\n"
+        for person in list_of_birthdays:
+            s = f"{person[0]} {person[1]}\n"
+            result += s
+
+        return result
 
 
 p = Path("address_book.bin")
@@ -275,3 +278,11 @@ if p.exists():
     with open("address_book.bin", "rb") as file:
         address_book.data = pickle.load(file)
 
+# sasha = Record("sasha")
+# sasha.add_birthday(1976,3,7)
+# address_book.add_record(sasha)
+#
+# roman = Record("roman")
+# address_book.add_record(roman)
+# roman.add_birthday(2016,12,2)
+# print(address_book.list_of_birthday(500))

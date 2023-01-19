@@ -54,7 +54,7 @@ CLI Assistant can:
 
 - [x] to __add birthday of contact__ use command: `add birthday <name> <yyyy-m-d>`
 - [x] to __see how many days to contact's birthday__ use command: `days to birthday <name>`
-- [x] to __see list of birthdays in period__ use command: `birthdays <number of days>`
+- [x] to __see list of birthdays in period__ (sorted by days of birthday) use command: `birthdays <number of days>`
 
 <p>
 
@@ -71,7 +71,7 @@ ___
 <p> This script can manage personal notes.</p>
 
 - [x] to __add note__ use command:  `add note <text>`
-- [x] to __edit note__ use command:  `edit notes <id> <edited text>`
+- [x] to __edit note__ use command:  `edit note <id> <edited text>`
 - [x] to __add tags__ use command:  `add tags <id> <tag1 tag2 tag3...>`
 - [x] to __show all notes__ use command: `show notes`
 - [x] to __show any note__ use command: `note <id>`

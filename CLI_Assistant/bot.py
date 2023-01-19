@@ -279,7 +279,7 @@ def new_note(text):
 
 
 @input_error
-def ed_notes(value):
+def ed_note(value):
     id_, text = value.split(" ", 1)
     nb.to_edit_text(id_, text)
     return f"The note was changed"
@@ -351,7 +351,7 @@ commands = {
     "clean-folder": clean_f,
     "help": helps,
     "add note": new_note,
-    "edit notes": ed_notes,
+    "edit note": ed_note,
     "add tags": tags,
     "show notes": sh_notes,
     "delete notes": del_notes,
