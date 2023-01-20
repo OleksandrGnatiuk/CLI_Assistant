@@ -126,6 +126,19 @@ def remove_em(value):
 
 
 @input_error
+def remove_bd(value):
+    name = value.lower().title().strip()
+
+    if name.title() in address_book:
+        address_book[name.title()].delete_birthday()
+        save_to_pickle()
+        return f"Birthday for {name.title()} was delete"
+    else:
+        return f"Contact {name.title()} does not exist"
+
+
+
+@input_error
 def add_phone(value):
     name, phone = value.lower().strip().title().split()
 
@@ -303,26 +316,27 @@ def helps(s=None):
     11) to remove address, write command: remove address <name>
 
     12) to add birthday of contact, write command: add birthday <name> <yyyy-m-d>
-    13) to see how many days to contact's birthday, write command: days to birthday <name>
-    14) to see list of birthdays in period, write command: birthdays <period - number of days>
+    13) to remove birthday, write command: remove birthday <name>
+    14) to see how many days to contact's birthday, write command: days to birthday <name>
+    15) to see list of birthdays in period, write command: birthdays <period - number of days>
 
-    15) to search contact, where is 'text', write command: search <text>
-    16) to see full record of contact, write: phone <name>
-    17) to see all contacts, write command: show all
-    18) to say goodbye, write one of these commands: good bye / close / exit
-    19) to say hello, write command: hello
-    20) to see help, write command: help
+    16) to search contact, where is 'text', write command: search <text>
+    17) to see full record of contact, write: phone <name>
+    18) to see all contacts, write command: show all
+    19) to say goodbye, write one of these commands: good bye / close / exit
+    20) to say hello, write command: hello
+    21) to see help, write command: help
 
-    21) to sort file in folder, write command: clean-folder <path to folder>
+    22) to sort file in folder, write command: clean-folder <path to folder>
 
-    22) to add note use command: add note <text>
-    23) to edit note use command: edit notes <id> <edited text>
-    24) to add tags use command: add tags <id> <tag1 tag2 tag3...>
-    25) to show all notes use command: show notes
-    26) to show any note use command: note <id>
-    27) to delete note use command: delete notes <id>
-    28) to search notes use command: search notes <text_to_search>
-    29) to search tags use command: search tags <tag_to_search>
+    23) to add note use command: add note <text>
+    24) to edit note use command: edit notes <id> <edited text>
+    25) to add tags use command: add tags <id> <tag1 tag2 tag3...>
+    26) to show all notes use command: show notes
+    27) to show any note use command: note <id>
+    28) to delete note use command: delete note <id>
+    29) to search notes use command: search notes <text_to_search>
+    30) to search tags use command: search tags <tag_to_search>
     """
     return rules
 
@@ -337,6 +351,7 @@ commands = {
     "change address": change_address,
     "remove phone": remove_phone,
     "remove email": remove_em,
+    "remove birthday": remove_bd,
     "remove address": remove_address,
     "add birthday": add_contact_birthday,
     "add email": add_em,
@@ -355,7 +370,7 @@ commands = {
     "edit note": ed_note,
     "add tags": tags,
     "show notes": sh_notes,
-    "delete notes": del_notes,
+    "delete note": del_notes,
     "search notes": search_n,
     "search tags": search_t,
     "note": note,

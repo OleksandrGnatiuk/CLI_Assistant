@@ -170,6 +170,9 @@ class Record:
     def add_adrs(self, value):
         self.address = value
 
+    def delete_birthday(self):
+        self.birthday = None
+
     def change_adrs(self, value):
         self.address = value
 

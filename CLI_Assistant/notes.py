@@ -54,9 +54,9 @@ class Notebook:
                 tags = ", ".join(rec.tags)
                 date = rec.date
                 result += f"\nid: {id_}      date: {date} \n{rec.note}\ntags: {tags} \n=========\n"
-            print(result)
+            return result
         else:
-            print(f"Notebook is empty")
+            return f"Notebook is empty"
 
     def is_id_exist(func):
         """Decorator checks if id exists"""
@@ -88,9 +88,7 @@ class Notebook:
     @is_id_exist
     def show_note(self, id_):
         tags = ", ".join(self.notes[int(id_)].tags)
-        print(
-            f"\nid: {id_}     date: {self.notes[int(id_)].date} \n{self.notes[int(id_)].note}\ntags: {tags} \n========\n "
-        )
+        return f"\nid: {id_}     date: {self.notes[int(id_)].date} \n{self.notes[int(id_)].note}\ntags: {tags} \n========\n "
 
     def search_note(self, text_to_search: str):
         for id_, value in self.notes.items():

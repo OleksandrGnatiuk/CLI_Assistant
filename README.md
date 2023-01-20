@@ -53,6 +53,7 @@ CLI Assistant can:
 <p>
 
 - [x] to __add birthday of contact__ use command: `add birthday <name> <yyyy-m-d>`
+- [x] to __remove birthday__, write command: ` remove birthday <name> `
 - [x] to __see how many days to contact's birthday__ use command: `days to birthday <name>`
 - [x] to __see list of birthdays in period__ (sorted by days of birthday) use command: `birthdays <number of days>`
 
@@ -75,7 +76,7 @@ ___
 - [x] to __add tags__ use command:  `add tags <id> <tag1 tag2 tag3...>`
 - [x] to __show all notes__ use command: `show notes`
 - [x] to __show any note__ use command: `note <id>`
-- [x] to __delete notes__ use command: `delete notes <id>`
+- [x] to __delete note__ use command: `delete note <id>`
 - [x] to __search notes__ use command: `search notes <text_to_search>`
 - [x] to __search tags__ use command: `search tags <tag_to_search>`
 
