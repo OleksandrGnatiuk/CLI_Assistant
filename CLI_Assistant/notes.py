@@ -83,7 +83,7 @@ class Notebook:
     @is_id_exist
     def to_remove_note(self, id_):
         del self.notes[int(id_)]
-        print(f"The note id:{id_} was delete!")
+        return f"The note id:{id_} was delete!"
 
     @is_id_exist
     def show_note(self, id_):
@@ -95,14 +95,14 @@ class Notebook:
             if text_to_search.lower().strip() in value.note.lower():
                 tags = ", ".join(value.tags)
                 result = f"id: {id_}    date: {value.date} \n{value.note}\ntags: {tags} \n========\n "
-                print(result)
+                return result
 
     def search_tag(self, tag_to_search: str):
         for id_, value in self.notes.items():
             if tag_to_search.lower().strip() in value.tags:
                 tags = ", ".join(value.tags)
                 result = f"id: {id_}    date: {value.date} \n{value.note}\ntags: {tags} \n========\n "
-                print(result)
+                return result
 
 
 file = Path("notes.bin")
