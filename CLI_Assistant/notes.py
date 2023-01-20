@@ -68,7 +68,7 @@ class Notebook:
                 Notebook.save_to_file()
                 return result
             else:
-                print(f"\nThe note with id={id_} is not exists\n")
+                return f"\nThe note with id={id_} is not exists\n"
 
         return wrapper
 
