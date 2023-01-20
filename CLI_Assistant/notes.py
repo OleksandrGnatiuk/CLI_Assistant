@@ -3,6 +3,21 @@ from datetime import datetime
 from pathlib import Path
 
 
+def is_id_exist(func):
+    """Decorator checks if id exists"""
+
+    def wrapper(*args):
+        id_ = args[1]
+        if int(id_) in args[0].notes:
+            result = func(*args)
+            Notebook.save_to_file()
+            return result
+        else:
+            return f"\nThe note with id={id_} is not exists\n"
+
+    return wrapper
+
+
 class RecordNote:
 
     def __init__(self, note: str):
@@ -57,20 +72,6 @@ class Notebook:
             return result
         else:
             return f"Notebook is empty"
-
-    def is_id_exist(func):
-        """Decorator checks if id exists"""
-
-        def wrapper(*args):
-            id_ = args[1]
-            if int(id_) in args[0].notes:
-                result = func(*args)
-                Notebook.save_to_file()
-                return result
-            else:
-                return f"\nThe note with id={id_} is not exists\n"
-
-        return wrapper
 
     @is_id_exist
     def to_edit_text(self, id_, text_):
