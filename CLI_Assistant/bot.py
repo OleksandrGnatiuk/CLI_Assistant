@@ -1,6 +1,9 @@
 import pickle
 import re
 from pathlib import Path
+from prompt_toolkit import prompt
+from prompt_toolkit.completion import WordCompleter
+
 from .classes import *
 from .exceptions import input_error
 from .clean import sort_file, show_result
@@ -377,12 +380,12 @@ commands = {
     "search": search,
 }
 
+cli_completer = WordCompleter([command for command in commands])
 
 @input_error
 def main():
     while True:
-        command = input("Enter command: ")
-
+        command = prompt('Enter command: ', completer=cli_completer)
         if command.lower() in (".", "close", "exit", "good bye"):
             say_goodbye()
             break
