@@ -3,7 +3,7 @@ This project represents the implementation of a personal assistant with a comman
 The project is installed as a Python package and can be called anywhere in the system by the appropriate command after installation; 
 This simple python app will help you to manage your contacts, notes and sort files on your computer. 
 
-This project was written in the **OOP paradigm**, the following libraries were used: **re, datetime, pathlib, collections, shutil, json, pickle**.
+This project was written in the **OOP paradigm**, the following libraries were used: **re, datetime, pathlib, collections, shutil, prompt_toolkit, json, pickle**.
 The address book and note book save to **pickle** file.
 
 
@@ -22,6 +22,8 @@ Launch command line and use command `assistant`
 ___
 
 ### Description
+
+**Auto-completion of commands** in the command line (use `Tab`) will help you manage this application.
 
 CLI Assistant can:
 
@@ -54,15 +56,15 @@ CLI Assistant can:
 
 - [x] to __add birthday of contact__ use command: ` add birthday <name> <yyyy-m-d> `
 - [x] to __remove birthday__, write command: ` remove birthday <name> `
-- [x] to __see how many days to contact's birthday__ use command: ` days to birthday <name>`
+- [x] to __see how many days to contact's birthday__ use command: `days to birthday <name>`
 - [x] to __see list of birthdays in period__ (sorted by days of birthday) use command: `birthdays <number of days>`
 
 <p>
 
-- [x] to __search contact__ with < text to search > use command: ` search <text to search>`
+- [x] to __search contact__ with < text to search > use command: `search <text to search>`
 - [x] to __see full record of contact__ use command: ` phone <name> `
-- [x] to __see all contacts__ use command: ` show all `
-- [x] to __say goodbye__ use one of these commands: `good bye` or `close` or `exit`
+- [x] to __see all contacts__ use command: `show addressbook`
+- [x] to __say goodbye__ use one of these commands: `good bye` or `close` or `exit` or ` . `
 - [x] to __say hello__ use command: `hello`
 
 ___
@@ -72,11 +74,11 @@ ___
 <p> This script can manage personal notes.</p>
 
 - [x] to __add note__ use command:  `add note <text>`
-- [x] to __edit note__ use command:  `edit note <id> <edited text>`
+- [x] to __edit note__ use command:  `change note <id> <edited text>`
 - [x] to __add tags__ use command:  `add tags <id> <tag1 tag2 tag3...>`
 - [x] to __show all notes__ use command: `show notes`
 - [x] to __show any note__ use command: `note <id>`
-- [x] to __delete note__ use command: `delete note <id>`
+- [x] to __delete note__ use command: `remove note <id>`
 - [x] to __search notes__ use command: `search notes <text_to_search>`
 - [x] to __search tags__ use command: `search tags <tag_to_search>`
 

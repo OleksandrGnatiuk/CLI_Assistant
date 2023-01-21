@@ -2,8 +2,7 @@ import pickle
 import re
 from pathlib import Path
 from prompt_toolkit import prompt
-from prompt_toolkit.completion import WordCompleter
-
+from prompt_toolkit.completion import NestedCompleter
 from .classes import *
 from .exceptions import input_error
 from .clean import sort_file, show_result
@@ -302,7 +301,7 @@ def get_birthdays(value=None):
 
 @input_error
 def helps(s=None):
-    rules = """
+    rules = """LIST OF COMMANDS: \n
     1) to add new contact and one or more phones, write command: add contact <name> <phone> <phone> ... <phone>
     2) to remove contact, write command: remove contact <name>
 
@@ -321,14 +320,12 @@ def helps(s=None):
     12) to add birthday of contact, write command: add birthday <name> <yyyy-m-d>
     13) to remove birthday, write command: remove birthday <name>
     14) to see how many days to contact's birthday, write command: days to birthday <name>
-    15) to see list of birthdays in period, write command: birthdays <period - number of days>
+    15) to see list of birthdays in period, write command: birthdays <number of days>
 
     16) to search contact, where is 'text', write command: search <text>
     17) to see full record of contact, write: phone <name>
-    18) to see all contacts, write command: show all
-    19) to say goodbye, write command: good bye
-    19) to say goodbye, write command: close
-    19) to say goodbye, write command: exit
+    18) to see all contacts, write command: show addressbook
+    19) to say goodbye, write one of these commands: good bye / close / exit / . 
 
     20) to say hello, write command: hello
     21) to see help, write command: help
@@ -336,11 +333,11 @@ def helps(s=None):
     22) to sort file in folder, write command: clean-folder <path to folder>
 
     23) to add note use command: add note <text>
-    24) to edit note use command: edit notes <id> <edited text>
+    24) to change note use command: change note <id> <edited text>
     25) to add tags use command: add tags <id> <tag1 tag2 tag3...>
     26) to show all notes use command: show notes
     27) to show any note use command: note <id>
-    28) to delete note use command: delete note <id>
+    28) to remove note use command: remove note <id>
     29) to search notes use command: search notes <text_to_search>
     30) to search tags use command: search tags <tag_to_search>
     """
@@ -365,7 +362,7 @@ commands = {
     "days to birthday": days_to_birthday,
     "add contact": add_contact,
     "phone": contact,
-    "show all": show_all,
+    "show addressbook": show_all,
     "hello": say_hello,
     "good bye": say_goodbye,
     "close": say_goodbye,
@@ -373,22 +370,65 @@ commands = {
     "clean-folder": clean_f,
     "help": helps,
     "add note": new_note,
-    "edit note": ed_note,
+    "change note": ed_note,
     "add tags": tags,
     "show notes": sh_notes,
-    "delete note": del_notes,
+    "remove note": del_notes,
     "search notes": search_n,
     "search tags": search_t,
     "note": note,
     "search": search,
 }
 
-cli_completer = WordCompleter([comm.split(":")[1].strip() for comm in helps().strip().split("\n") if comm])
+completer = NestedCompleter.from_nested_dict({
+    "add":{
+        "contact": {"<name> <phone> <phone> ... <phone>"},
+        "phone": {"<name> <one phone>"},
+        "email": {"<name> <e-mail>"},
+        "address": {"<name> <address>"},
+        "birthday": {"<name> <yyyy-m-d>"},
+        "note": {"<text>"},
+        "tags": {"<id> <tag1 tag2 tag3...>"},
+        },
+    "remove": {
+        "contact": {"<name>"},
+        "phone": {"<name> <old phone>"},
+        "email": {"<name>"},
+        "address": {"<name>"},
+        "birthday": {"<name>"},
+        "note": {"<id>"},
+        },
+    "change": {
+        "phone": {"<name> <old phone> <new phone>"},
+        "email": {"<name> <new e-mail>"},
+        "address": {"<name> <new address>"},
+        "notes": {"<id> <edited text>"},
+        },
+    "phone": {"<name>"},
+    "search": {
+        "<text>": None,
+        "notes": {"<text_to_search>"},
+        "tags ": {"<tag_to_search>"},
+        },
+    "good bye": None,
+    "close": None,
+    "exit": None,
+    "show": {
+        "addressbook": None,
+        "notes": None,
+        },
+    "note": {"<id>"},
+    "hello": None,
+    "help": None,
+    "days to birthday": {"<name>"},
+    "birthdays": {"<number of days>"},
+    "clean-folder": {"<path to folder>"},
+})
 
 @input_error
 def main():
     while True:
-        command = prompt('Enter command: ', completer=cli_completer)
+        command = prompt('Enter command: ', completer=completer)
         if command.lower() in (".", "close", "exit", "good bye"):
             say_goodbye()
             break
