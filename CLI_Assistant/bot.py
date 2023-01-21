@@ -302,8 +302,8 @@ def get_birthdays(value=None):
 
 @input_error
 def helps(s=None):
-    rules = """List of commands:
-    1) to add new contact and one or more phones, write command: add contact <name> <phone> <phone> <phone>
+    rules = """
+    1) to add new contact and one or more phones, write command: add contact <name> <phone> <phone> ... <phone>
     2) to remove contact, write command: remove contact <name>
 
     3) to add phone, write command: add phone <name> <one phone>
@@ -326,7 +326,10 @@ def helps(s=None):
     16) to search contact, where is 'text', write command: search <text>
     17) to see full record of contact, write: phone <name>
     18) to see all contacts, write command: show all
-    19) to say goodbye, write one of these commands: good bye / close / exit
+    19) to say goodbye, write command: good bye
+    19) to say goodbye, write command: close
+    19) to say goodbye, write command: exit
+
     20) to say hello, write command: hello
     21) to see help, write command: help
 
@@ -380,7 +383,7 @@ commands = {
     "search": search,
 }
 
-cli_completer = WordCompleter([command for command in commands])
+cli_completer = WordCompleter([comm.split(":")[1].strip() for comm in helps().strip().split("\n") if comm])
 
 @input_error
 def main():
