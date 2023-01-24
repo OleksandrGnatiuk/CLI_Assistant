@@ -9,6 +9,6 @@ setup(name='CLI_Assistant',
       include_package_data=True,
       license='MIT',
       packages=find_packages(),
-      install_requires=['markdown', 'prompt_toolkit'],
+      install_requires=['markdown'],
       entry_points={'console_scripts': ['assistant = CLI_Assistant.bot:main']}
       )

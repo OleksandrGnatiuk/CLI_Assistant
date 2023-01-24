@@ -23,7 +23,7 @@ ___
 
 ### Description
 
-**Auto-completion of commands** in the command line (use `Tab`) will help you manage this application.
+**Auto-completion of commands** in the command line will help you manage this application.
 
 CLI Assistant can:
 
