@@ -3,7 +3,7 @@ This project represents the implementation of a personal assistant with a comman
 The project is installed as a Python package and can be called anywhere in the system by the appropriate command after installation; 
 This simple python app will help you to manage your contacts, notes and sort files on your computer. 
 
-This project was written in the **OOP paradigm**, the following libraries were used: **re, datetime, pathlib, collections, shutil, prompt_toolkit, json, pickle**.
+This project was written in the **OOP paradigm**, the following libraries were used: **re, datetime, pathlib, collections, shutil, prompt_toolkit, urllib, json, pickle**.
 The address book and note book save to **pickle** file.
 
 
