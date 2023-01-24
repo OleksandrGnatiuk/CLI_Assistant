@@ -7,6 +7,7 @@ from .classes import *
 from .exceptions import input_error
 from .clean import sort_file, show_result
 from .notes import *
+from .nbu import *
 
 
 def save_to_pickle():
@@ -30,11 +31,11 @@ def search(value: str):
 
 
 def say_hello(s=None):
-    return "How can I help you?"
+    return "\nHow can I help you?\n"
 
 
 def say_goodbye(s=None):
-    return "Good bye!"
+    return "\nGood bye!\n"
 
 
 @input_error
@@ -51,9 +52,9 @@ def add_contact(value):
             for phone in phones:
                 record.add_phone(phone)
         save_to_pickle()
-        return f"Contact {name.value.title()} was created"
+        return f"\nContact {name.value.title()} was created.\n"
     else:
-        return f"Contact {name.value.title()} already exists"
+        return f"\nContact {name.value.title()} already exists.\n"
 
 
 @input_error
@@ -63,9 +64,9 @@ def add_em(value):
     if name.title() in address_book:
         address_book[name.title()].add_email(email)
         save_to_pickle()
-        return f"The e-mail for {name.title()} was recorded"
+        return f"\nThe e-mail for {name.title()} was recorded.\n"
     else:
-        return f"Contact {name.title()} does not exist"
+        return f"\nContact {name.title()} does not exist.\n"
 
 
 @input_error
@@ -75,9 +76,9 @@ def add_address(value):
     if name.title() in address_book:
         address_book[name.title()].add_adrs(address)
         save_to_pickle()
-        return f"The address for {name.title()} was recorded"
+        return f"\nThe address for {name.title()} was recorded.\n"
     else:
-        return f"Contact {name.title()} does not exist"
+        return f"\nContact {name.title()} does not exist.\n"
 
 
 @input_error
@@ -87,9 +88,9 @@ def change_address(value):
     if name.strip().lower().title() in address_book:
         address_book[name.title()].change_adrs(address)
         save_to_pickle()
-        return f"The address for {name.title()} was changed"
+        return f"\nThe address for {name.title()} was changed.\n"
     else:
-        return f"Contact {name.title()} does not exists"
+        return f"\nContact {name.title()} does not exists.\n"
 
 
 @input_error
@@ -98,9 +99,9 @@ def remove_address(value):
     if name.title() in address_book:
         address_book[name.title()].delete_adrs()
         save_to_pickle()
-        return f"Address for {name.title()} was delete"
+        return f"\nAddress for {name.title()} was delete.\n"
     else:
-        return f"Contact {name.title()} does not exist"
+        return f"\nContact {name.title()} does not exist.\n"
 
 
 @input_error
@@ -110,9 +111,9 @@ def change_em(value: str):
     if name.strip().lower().title() in address_book:
         address_book[name.strip().lower().title()].change_email(new_em)
         save_to_pickle()
-        return f"The e-mail for {name.title()} was changed"
+        return f"\nThe e-mail for {name.title()} was changed.\n"
     else:
-        return f"Contact {name.title()} does not exists"
+        return f"\nContact {name.title()} does not exists.\n"
 
 
 @input_error
@@ -122,9 +123,9 @@ def remove_em(value):
     if name.title() in address_book:
         address_book[name.title()].delete_email()
         save_to_pickle()
-        return f"E-mail for {name.title()} was delete"
+        return f"\nE-mail for {name.title()} was delete.\n"
     else:
-        return f"Contact {name.title()} does not exist"
+        return f"\nContact {name.title()} does not exist.\n"
 
 
 @input_error
@@ -134,9 +135,9 @@ def remove_bd(value):
     if name.title() in address_book:
         address_book[name.title()].delete_birthday()
         save_to_pickle()
-        return f"Birthday for {name.title()} was delete"
+        return f"\nBirthday for {name.title()} was delete.\n"
     else:
-        return f"Contact {name.title()} does not exist"
+        return f"\nContact {name.title()} does not exist.\n"
 
 
 
@@ -147,9 +148,9 @@ def add_phone(value):
     if name.title() in address_book:
         address_book[name.title()].add_phone(phone)
         save_to_pickle()
-        return f"The phone number for {name.title()} was recorded"
+        return f"\nThe phone number for {name.title()} was recorded.\n"
     else:
-        return f"Contact {name.title()} does not exist"
+        return f"\nContact {name.title()} does not exist.\n"
 
 
 @input_error
@@ -159,9 +160,9 @@ def remove_phone(value):
     if name.title() in address_book:
         address_book[name.title()].delete_phone(phone)
         save_to_pickle()
-        return f"Phone for {name.title()} was delete"
+        return f"\nPhone for {name.title()} was delete.\n"
     else:
-        return f"Contact {name.title()} does not exist"
+        return f"\nContact {name.title()} does not exist.\n"
 
 
 @input_error
@@ -172,9 +173,9 @@ def add_contact_birthday(value):
     if name.title() in address_book:
         address_book[name.title()].add_birthday(*birthday)
         save_to_pickle()
-        return f"The Birthday for {name.title()} was recorded"
+        return f"\nThe Birthday for {name.title()} was recorded.\n"
     else:
-        return f"Contact {name.title()} does not exists"
+        return f"\nContact {name.title()} does not exists.\n"
 
 
 @input_error
@@ -184,9 +185,9 @@ def days_to_birthday(name):
             days = address_book[name.title()].days_to_bd()
             return days
         else:
-            return f"{name.title()}'s birthday is unknown"
+            return f"\n{name.title()}'s birthday is unknown.\n"
     else:
-        return f"Contact {name.title()} does not exists"
+        return f"\nContact {name.title()} does not exists.\n"
 
 
 @input_error
@@ -198,7 +199,7 @@ def change_ph(value: str):
             old_phone, new_phone)
         save_to_pickle()
     else:
-        return f"Contact {name.title()} does not exists"
+        return f"\nContact {name.title()} does not exists\n"
 
 
 @input_error
@@ -206,7 +207,7 @@ def remove_contact(name: str):
     record = address_book[name.strip().lower().title()]
     address_book.remove_record(record.name.value)
     save_to_pickle()
-    return f"Contact {name.title()} was removed"
+    return f"\nContact {name.title()} was removed.\n"
 
 
 @input_error
@@ -216,7 +217,7 @@ def contact(name):
         record = address_book[name.title()]
         return record.get_contact()
     else:
-        return f"Contact {name.title()} does not exist"
+        return f"\nContact {name.title()} does not exist.\n"
 
 
 @input_error
@@ -224,7 +225,7 @@ def show_all(s):
     """ Функція виводить всі записи в телефонній книзі при команді 'show all' """
 
     if len(address_book) == 0:
-        return "Phone book is empty"
+        return "\nPhone book is empty.\n"
     result = ''
     for record in address_book.values():
         result += f"{record.get_contact()}\n"
@@ -249,21 +250,21 @@ def clean_f(path):
 def new_note(text):
     note_ = RecordNote(text)
     nb.add_new_note(note_)
-    return f"The note was created"
+    return f"\nThe note was created.\n"
 
 
 @input_error
 def ed_note(value):
     id_, text = value.split(" ", 1)
     nb.to_edit_text(id_, text)
-    return f"The note was changed"
+    return f"\nThe note was changed.\n"
 
 
 @input_error
 def tags(value):
     id_, *tags_ = value.split()
     nb.to_add_tags(id_, list(tags_))
-    return f"Tags for note id:{id_} was added"
+    return f"\nTags for note id:{id_} was added.\n"
 
 
 @input_error
@@ -297,6 +298,14 @@ def get_birthdays(value=None):
     else:
         period = int(value.strip())
     return address_book.list_of_birthday(period)
+
+
+def get_curr(value):
+    currency = value.strip().upper()
+    if currency.isalpha():
+        return get_currency(currency)
+    else:
+        return "\nYou need write command in format 'currency <name of currency>'\n"
 
 
 @input_error
@@ -340,6 +349,8 @@ def helps(s=None):
     28) to remove note use command: remove note <id>
     29) to search notes use command: search notes <text_to_search>
     30) to search tags use command: search tags <tag_to_search>
+    
+    31) to see rate of currency use command: currency <name of currency>: 
     """
     return rules
 
@@ -378,6 +389,7 @@ commands = {
     "search tags": search_t,
     "note": note,
     "search": search,
+    "currency": get_curr,
 }
 
 completer = NestedCompleter.from_nested_dict({
@@ -418,11 +430,20 @@ completer = NestedCompleter.from_nested_dict({
         "notes": None,
         },
     "note": {"<id>"},
-    "hello": None,
-    "help": None,
-    "days to birthday": {"<name>"},
+    "days to birthday":{"<name>"},
     "birthdays": {"<number of days>"},
     "clean-folder": {"<path to folder>"},
+    "hello": None,
+    "help": None,
+    "currency": {
+        'USD': None,
+        'EUR': None,
+        'PLN': None,
+        'GBP': None,
+        'CZK': None,
+        'CNY': None,
+        'CAD': None,
+    }
 })
 
 @input_error

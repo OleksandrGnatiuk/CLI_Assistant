@@ -20,7 +20,7 @@ def input_error(func):
             return "Length of phone's number is wrong!"
         except EmailError:
             return "E-mail is wrong!"
-        except Exception:
-            return "Mistake"
+        # except Exception:
+        #     return "Mistake"
 
     return wrapper

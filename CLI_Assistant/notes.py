@@ -33,7 +33,7 @@ class RecordNote:
             self.tags.add(tag.lower())
 
     def __del__(self):
-        return f"The Note was delete"
+        return f"\nThe Note was delete.\n"
 
 
 class Notebook:
@@ -71,7 +71,7 @@ class Notebook:
                 result += f"\nid: {id_}      date: {date} \n{rec.note}\ntags: {tags} \n=========\n"
             return result
         else:
-            return f"Notebook is empty"
+            return f"\nNotebook is empty.\n"
 
     @is_id_exist
     def to_edit_text(self, id_, text_):
@@ -84,7 +84,7 @@ class Notebook:
     @is_id_exist
     def to_remove_note(self, id_):
         del self.notes[int(id_)]
-        return f"The note id:{id_} was delete!"
+        return f"\nThe note id:{id_} was delete!\n"
 
     @is_id_exist
     def show_note(self, id_):
@@ -96,14 +96,14 @@ class Notebook:
             if text_to_search.lower().strip() in value.note.lower():
                 tags = ", ".join(value.tags)
                 result = f"id: {id_}    date: {value.date} \n{value.note}\ntags: {tags} \n========\n "
-                return result
+                print(result)
 
     def search_tag(self, tag_to_search: str):
         for id_, value in self.notes.items():
             if tag_to_search.lower().strip() in value.tags:
                 tags = ", ".join(value.tags)
                 result = f"id: {id_}    date: {value.date} \n{value.note}\ntags: {tags} \n========\n "
-                return result
+                print(result)
 
 
 file = Path("notes.bin")

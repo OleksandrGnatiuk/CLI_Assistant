@@ -3,7 +3,7 @@ This project represents the implementation of a personal assistant with a comman
 The project is installed as a Python package and can be called anywhere in the system by the appropriate command after installation; 
 This simple python app will help you to manage your contacts, notes and sort files on your computer. 
 
-This project was written in the **OOP paradigm**, the following libraries were used: **re, datetime, pathlib, collections, shutil, prompt_toolkit, json, pickle**.
+This project was written in the **OOP paradigm**, the following libraries were used: **re, datetime, pathlib, collections, shutil, prompt_toolkit, urllib, json, pickle**.
 The address book and note book save to **pickle** file.
 
 
@@ -23,7 +23,7 @@ ___
 
 ### Description
 
-**Auto-completion of commands** in the command line (use `Tab`) will help you manage this application.
+**Auto-completion of commands** in the command line will help you manage this application.
 
 CLI Assistant can:
 
@@ -58,6 +58,10 @@ CLI Assistant can:
 - [x] to __remove birthday__, write command: ` remove birthday <name> `
 - [x] to __see how many days to contact's birthday__ use command: `days to birthday <name>`
 - [x] to __see list of birthdays in period__ (sorted by days of birthday) use command: `birthdays <number of days>`
+
+<p>
+
+- [x] to __see rate of currency__ today use command: `currency <name of currency>` 
 
 <p>
 

@@ -6,9 +6,17 @@ import json
 from .translate_char import normalize
 from .show_result import show_result
 
-with open(r"CLI_Assistant/extension_dict.json", "r") as file:
-    extension_dict = json.load(file)
+# with open(r"CLI_Assistant/extension_dict.json", "r") as file:
+#     extension_dict = json.load(file)
 
+extension_dict = {
+    "documents": [".doc", ".docx", ".xls", ".xlsx", ".txt", ".pdf"],
+    "audio": [".mp3", ".ogg", ".wav", ".amr"],
+    "video": [".avi", ".mp4", ".mov", ".mkv"],
+    "images": [".jpeg", ".png", ".jpg", ".svg"],
+    "archives": [".zip", ".gz", ".tar"],
+	"python": [".py"]
+}
 
 def is_file_exists(file, to_dir):
     """ if the file is exists with same name, this file will be renamed - 
