@@ -7,6 +7,7 @@ from .classes import *
 from .exceptions import input_error
 from .clean import sort_file, show_result
 from .notes import *
+from .nbu import *
 
 
 def save_to_pickle():
@@ -299,6 +300,11 @@ def get_birthdays(value=None):
     return address_book.list_of_birthday(period)
 
 
+def get_curr(value):
+    currency = value.strip().upper()
+    return get_currency(currency)
+
+
 @input_error
 def helps(s=None):
     rules = """LIST OF COMMANDS: \n
@@ -340,6 +346,8 @@ def helps(s=None):
     28) to remove note use command: remove note <id>
     29) to search notes use command: search notes <text_to_search>
     30) to search tags use command: search tags <tag_to_search>
+    
+    31) to see rate of currency use command: currency <name of currency>: 
     """
     return rules
 
@@ -378,6 +386,7 @@ commands = {
     "search tags": search_t,
     "note": note,
     "search": search,
+    "currency": get_curr,
 }
 
 completer = NestedCompleter.from_nested_dict({
@@ -423,6 +432,11 @@ completer = NestedCompleter.from_nested_dict({
     "clean-folder": {"<path to folder>"},
     "hello": None,
     "help": None,
+    "currency": {
+        'USD': None,
+        'EUR': None,
+        'PLN': None,
+    }
 })
 
 @input_error

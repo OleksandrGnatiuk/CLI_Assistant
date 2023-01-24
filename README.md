@@ -61,6 +61,10 @@ CLI Assistant can:
 
 <p>
 
+- [x] to __see rate of currency__ today use command: `currency <name of currency>` 
+
+<p>
+
 - [x] to __search contact__ with < text to search > use command: `search <text to search>`
 - [x] to __see full record of contact__ use command: ` phone <name> `
 - [x] to __see all contacts__ use command: `show addressbook`
