@@ -302,7 +302,10 @@ def get_birthdays(value=None):
 
 def get_curr(value):
     currency = value.strip().upper()
-    return get_currency(currency)
+    if currency.isalpha():
+        return get_currency(currency)
+    else:
+        return "\nYou need write command in format 'currency <name of currency>'\n"
 
 
 @input_error
@@ -436,6 +439,10 @@ completer = NestedCompleter.from_nested_dict({
         'USD': None,
         'EUR': None,
         'PLN': None,
+        'GBP': None,
+        'CZK': None,
+        'CNY': None,
+        'CAD': None,
     }
 })
 
