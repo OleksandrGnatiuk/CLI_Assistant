@@ -133,11 +133,11 @@ if file.exists():
         else:
             nb.counter = 0
 
-note_1 = RecordNote("Путін - хуйло")
-note_2 = RecordNote("Слава Україні - Героям Слава!")
-nb = Notebook()
-nb.add_new_note(note_1)
-nb.add_new_note(note_2)
+# note_1 = RecordNote("Путін - хуйло")
+# note_2 = RecordNote("Слава Україні - Героям Слава!")
+# nb = Notebook()
+# nb.add_new_note(note_1)
+# nb.add_new_note(note_2)
 
 # nb.to_add_tags('1', ['путін', 'хуйло'])
 # nb.to_add_tags('2', ['перемога'])
@@ -145,4 +145,4 @@ nb.add_new_note(note_2)
 # print(nb.show_note('3'))
 # print(nb.show_all_notes())
 # print(nb.search_note('героям'))
-print(nb.search_tag(''))
+# print(nb.search_tag(''))
